@@ -1,130 +1,109 @@
-Level 1 - Form
-==============
+Nivel 1 - Formulario
+====================
 
 
-How does a web form work?
+Como funciona un formulario web?
 =========================
 
 
-1. A visitor visits a web page that contains a form.
-2. The web browser displays the HTML form.
-3. The visitor fills in the form and submits.
-4. The browser sends the submitted form data to the web server.
-5. A form processor script running on the web server processes the form data.
-   The processing steps can include:
-      - sending the form submission by email,
-      - saving the submission to a database table or a file.
-6. A response page is sent back to the browser.
+1. Un cliente visita una pagina web que contiene un formulario.
+2. El navegador web muestra el formulario HTML.
+3. El cliente completa el formulario y lo envia.
+4. El navegador manda los datos del formulario enviado hacia el servidor web.
+5. Un script de procesamiento de formularios ejecutandose en el servidor web procesa los datos del formulario.
+   Los pasos del procesamiento pueden incluir:
+      - realizar el envio del formulario por email, 
+      - guardar el envio del formulario en una tabla o en un archivo de una base de datos.
+6. Una pagina de respuesta es enviada al navegador
 
-A standard web form has the following parts:
-1. The HTML code for the form (read in more details at
-   html-form-description.txt file).
-2. Input validations.
-3. Form processor script.
-
-
-
-Input Validations
-=================
-
-
-* Client-side validation:
-Input validations are essential for any web form since it helps the web site
-visitor submit the right input. Input validations are often written in the
-client-side language – JavaScript.
-Validating form input with JavaScript is easy to do and can save a lot of
-unnecessary calls to the server as all processing is handled by the web
-browser. It can prevent people from leaving fields blank, from entering too
-little or too much or from using invalid characters.
-
-For an alternative approach to client-side form validation, without
-JavaScript, check on HTML5 Form Validation which is available now in most
-modern browsers. But we cannot style it, that is why we are doing js validation
-in this workshop.
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation
-
-* Server-side validation:
-When form input is important, it should always be verified using a secure
-server-side script. Otherwise a browser with JavaScript disabled, or a hacker
-trying to compromise your site, can easily submit invalid data.
+Un formulario web estandar tiene las siguientes partes:
+1. El codigo HTML para el formulario (podes leer mas detalles en el archivo html-form-description.txt).
+2. Validacion de las entradas ingresadas.
+3. El script de procesamiento del formulario.
 
 
 
-To validate our form we will need to do the following:
-1. Get value from form
-2. General validation:
-    - not empty
-    - min length 2
-    - max length 250
-    - only letters
-    - only numbers
-    - letters and numbers
-3. Individual validation:
-    - for name
-    - drop down - city
-    - description
-    - file type
-    - file size
-4. Validate whole form when we submit it
-5. Clean the code
-6. CSS:
-    - change for error field - red
-    - warning messages
-
-These comprise all of the validations for our form.
-
-
-1.Get value from the form
+Validacion de las entradas
 ==========================
 
 
-   First of all we will need to access our HTML, to do so we will use `document`.
-   If you don't know how DOM works you can read up on it [here](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction), and it's also covered in part 3 of our `Intro to Javascript` [workshop](https://github.com/node-girls-australia/js-intro-workshop).
+* Validacion del lado del Cliente:
+La validacion de las entradas es esencial para cualquier formulario web, ya que ayuda al visitante del sitio web a enviar la entrada correcta. La validacion es usualmente escrita en el lenguaje utilizado por el lado del cliente - Javascript.
+Validar las entradas del formulario con JavaScript es una tarea sencilla y puede ahorrar un monton de llamadas innecesarias al servidor, ya que todo el procesamiento es realizado por el navegador web. Puede prevenir dejar campos vacios, evitar ingresar de mas o de menos, o de usar caracteres invalidos, por ejemplo.
 
-   So let's get one value out to see how it works, and for that you need to check on
-   index.html file as well - to see how we are getting element out knowing classes:
-   `const name = document.letterToSanta.name.value;`
+Para un acercamiento distinto a la validacion del lado del usuario, sin JavaScript, fijate en la Validacion de Formulario HTML5, la cual esta disponible en la mayoria de los navegadores modernos. Pero como on podemos darle estilos, usamos validacion js en este taller.
 
-   TODO: now it is your turn to get other values out. Create variables called
-   `city`, `behavior`, `description` and store in them appropriate values from the form.
+https://developer.mozilla.org/es/docs/Learn/HTML/Forms/Validacion_formulario_datos
+
+* Validacion del lado del servidor.
+Cuando la entrada del formulario es importante, siempre deberia ser verificada usando un script seguro del lado del servidor. De otro modo, un navegador con JavaScript deshabilitado, o un hacker tratando de comprometer la seguridad de tu sitio, facilmente puede enviar datos invalidos.
+
+
+
+Para validar nuestro formulario, tenemos que hacer lo siguiente:
+1. Obtener valores del formulario
+2. Validacion general:
+    - no vacio
+    - extension minima 2
+    - extension maxima 250
+    - solo letras
+    - solo numeros
+    - letras y numeros
+3. Validacion individual:
+    - para el nombre
+    - lista - ciudad
+    - descripcion
+    - tipo de archivo
+    - tamanio de archivo
+4. Validar el formulario completo cuando lo enviamos
+5. Limpiar el codigo
+6. CSS:
+    - cambiar el campo erroneo - rojo
+    - mensajes de alerta
+
+Estas serian todas las validaciones de nuestro formulario
+
+
+1.Obtener valores del formulario
+==========================
+
+
+   Primero que nada, necesitamos acceder a nuestro HTML, para ello usaremos `document`.
+   Si no sabes como funciona DOM, podes leer sobre ello en [here](https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducción), y tambien la vimos en la parte 3 de nuestra `Introduccion a Javascript`[workshop](https://github.com/r-argentina-programa/introduccion-a-js).
+
+   Obtengamos un valor para ver como funciona, y para ello debemos revisar el archivo index.html - para ver como vas a conseguir un elemento en base a saber su clase:
+   `const $nombre = document.cartaASanta.nombre.value;`
+
+   Para hacer: ahora es tu turno de conseguir otros valores. Crea variables llamadas `ciudad`, `comportamiento`, `descripcion`, que guarden el valor correspondiente del formulario
    
    
-2.Validate one value to be right
+2.Validar un valor para que sea correcto
 ================================
 
 
-  Let's continue with our example `name` and validate it.
-  First of all let's validate that our `name` value is not empty:
-
+  Sigamos con nuestro ejemplo `nombre` y validemoslo.
+  Primero que todo, validemos que nuestro valor `nombre` no esta vacio:
+  
   ```
-  function nameValidationError (value) {
-    if(value === '') {
-      return 'Name cannot be empty';
+  function nombreErrorValidacion (valor) {
+    if(valor === '') {
+      return 'El nombre no puede estar vacio';
     }
     return '';
   }
   ```
 
-  TODO: add a few more validations inside the `nameValidationError` function:
-  - If `name` is shorter than 2 characters print an error: 'This field should be longer than 1 character'
-  - If `name` is longer than 250 characters print an error: 'This field cannot be longer than 250 characters'
-
-
-  Now it is time to do one more interesting validation. We want
-  our name to contain only letters. But how we can check this? One of very
-  handy tool that we can use for this kind of check is Regular Expressions
-  (RegEx/RegExp for short) - an object that describes a pattern of characters.
-  RegExps are used to perform pattern-matching and "search-and-replace" functions
-  on text. So we can check if our text (or part of the text) contains only letters or
-  only numbers, or if we have particular set of letters etc. RegEx can get very complex, but we will deal with a simple pattern today.
+  Para hacer: agrega mas validaciones dentro de la funcion `nombreErrorValidacion`:
+  - Si `nombre` tiene menos de dos caracteres, que imprima un error: 'Este campo debe ser mayor que un caracter'
+  - Si `nombre` tiene mas de 250 caracteres, que imprima un error: 'Este campo no puede ser mas largo que 250 caracteres'.
   
-  P.S.: check out regular-expressions.txt for more information about RegExp and
-  links to a cheat sheet and interesting games(!!!) where you can practice your
-  new skills. Very recommended!
 
-  Regular expression objects have a number of methods. The simplest one is
-  `test`. If you pass it a string, it will return a boolean value (true or false) telling you whether
-  the string contains a match for the pattern in the expression.
+
+  Ahora es momento de realizar una validacion interesante mas. Queremos que nuestro nombre solo contenga letras. Pero, como podemos revisar eso? Una herramienta util que podemos usar es Expresiones Regulares (Regular Expressions - RegEx/RegExp). Un objeto que describe un patron de caracteres. Las expresiones regulares son usadas para busqueda de coincidencias como tambien funciones del tipo "buscar y reemplazar" en texto. Asi, podemos revisar si nuestro texto (o parte del texto) contiene solo letras o solo numeros, o si tenemos un conjunto particular de letras, etc. RegEx puede volverse muy complejo, pero hoy trabajaremos con una secuencia sencilla
+  
+  P.S.: revisa regular-expressions.txt para mas informacion sobre RegExp y links a un resumen y juegos interesantes(!!!) donde puedes practicar tus nuevas habilidades. Muy recomendado!
+  
+  Los objetos Expresiones Regulares pueden tener un numero de metodos. El mas simple es `test`. Si lo pasas como un string, devolvera un valor booleano (true o false) respondiendo si el string contiene una coincidencia con la secuencia introducida en la expresion.
 
   ```
   console.log(/abc/.test("abcde"));
@@ -133,88 +112,62 @@ These comprise all of the validations for our form.
     // → false
   ```
 
-  To validate that our name only has letters we can test our value as
-  follows:
+  Para validar si nuestro nombre tiene solo letras podemos probar nuestro valor de la siguiente manera:
 
-  `const onlyLetters = /^[A-z]+$/.test(value);`
+  `const soloLetras = /^[A-z]+$/.test(valor);`
 
-  This test will return a boolean value, so if `value` does match our
-  pattern `onlyLetters` will be equal to `true`.
+  Esta prueba regresa un valor booleano, el cual sera `true` si nuestro `valor` coincide con nuestra secuencia.
 
-  TODO: Add one more validation to `nameValidationError` function, which will 
-  validate that we have letters only. If it doesn't, return an error: 'This field 
-  can only contain letters'.
+  Para hacer: Agrega una validacion adicional a la funcion `nombreErrorValidacion`, la cual debe validar que solo tengamos letras. Si no, debe regresar un error: 'Este campo solo puede contener letras'.
   
 
-3.Submitting the form
-=====================
+3.Enviar el formulario
+======================
   
   
-  Now that we have full validation on the name field let's check how it works 
-  when we submit the form. If you go to the `index.html` file and check 
-  the form, on the bottom, where we have the submit button `Send your letter to 
-  Santa`, you can see that in `onclick` we call function `validateForm`.
+  Ahora que hemos completado la validacion en el campo nombre, revisemos como funciona cuando enviamos el formulario. Si vas al archivo `index.html` y revisas el formulario, en el fondo, donde tenemos el boton de enviar `Enviar tu carta a Santa`, podes ver que en `onclick` ,llamamos una funcion `validarFormulario`.
+  
+  Para hacer:
+  1. Creamos una funcion llamada `validarFormulario`, que no toma ningun argumento.
+  2. Introduce la variable `nombre` con su valor a la funcion.
+  3. Llama a la funcion `nombreErrorValidacion` dentro de nuestra funcion `validarFormulario` e incluye `nombre` como argumento.
+  4. console.log a `nombreErrorValidacion(nombre)` para revisar si funciona
 
-  TODO:
-  1. Let's create a function `validateForm`, which does not take any 
-  arguments.
-  2. Move variable `name` with its value inside of the function.
-  3. Call function `nameValidationError` inside our `validateForm` function 
-  and pass it `name` as an argument.
-  4. console.log the `nameValidationError(name)` so we can check if it 
-  works.
-
-  What happens now? When we click the submit button we get the value
-  of the name field (if there is any). Afterwards we call function
-  `nameValidationError`, which will validate if our name field is empty,
-  if it's of an appropriate length, and if our name consists only of letters.
-
-  If you try it now nothing will happen. The reason for that is
-  the default behaviour of the submit button.
+  Que sucede ahora? Cuando hacemos click en el boton enviar, obtenemos los valores del campo nombre (si hay alguno). Luego, llamamos a la funcion `nombreErrorValidacion`, la cual validara si nuestro campo nombre esta vacio, o si es de una longitud apropiada, o si nuestro nombre consiste de solo letras.
+  
+  Si lo intentas ahora no sucedera nada. La razon de ello es el comportamiento predeterminado del boton enviar.
   
   
-4.Events. Submit button
+4.Eventos. Boton enviar
 =======================
 
 
-  The standard behaviour of the form on submit (i.e. all input is sent
-  to the server and the page is reloaded) was reasonable a long time ago
-  when we had no single page application concept. Nowadays we create 
-  single-page applications with javascript, and we want to prevent that 
-  default behaviour.
-
-  TODO:
-  1. In `index.html` add `event` as an argument for the
-  `validateForm` function.
-  2. In your javascript file add `event` as an argument to
-  the `validateForm` function.
-  3. Inside of the `validateForm` function call:
-  `event.preventDefault();`
-
-
-  Now if you try to submit the form with empty name field it should show your errors.
+  El comportamiento estandar del formulario al presionar enviar (es decir, todas las entras son enviadas al servidor y la pagina es recargada) era razonable un tiempo atras cuando no teniamos el concepto del concepto de una aplicacion de una sola pagina. Hoy en dia, creamos aplicaciones de una sola pagina con javascript, y queremos prevenir ese comportamiento por defecto.
   
 
-5.Success or errors
-===================
+  Para hacer:
+  1. En `index.html` agrega `evento` como argumento para la funcion `validarFormulario`.
+  2. En tu archivo javascript agrega `evento` como un argumento a la funcion `validarFormulario`.
+  3. Dentro de la llamada a la funcion `validarFormulario` incluye el siguiente llamado: `evento.preventDefault();`
 
 
-  Let's create an error handler which will handle our errors
-  and if we have errors it will return us errors, else Success.
+  Ahora si intentas enviar el formulario con el campo nombre vacio deberia mostrarte tus errores.
+  
+
+5.Exito o error
+===============
+
+
+  Creemos un handler de errores que servira para manejar nuestros errores y si tenemos errores, nos regresara error, o en caso contrario, exito.
   
   TODO:
-  1. Create a function `handleErrors` that takes 1 argument `errors`.
-  2. Add a check inside of this function: if we have no errors 
-  then console.log 'Success', else console.log the errors.
-  3. Replace console.log `nameValidationError(name)` in the function 
-  `validateForm` with a call to function `handleErrors`, and  
-  pass in the list of errors. To do so we need to:
-      - Create a variable `errors` inside the function `validateForm` and 
-  make it equal to `nameValidationError(name)`,
-      - Pass the variable `errors` to the `handleErrors` function.
+  1. Crea una funcion `manejarError` que toma un argumento `errores`.
+  2. Crea una revision dentro de esta funcion: si no tenemos errores, entonces console.log 'Exito', en caso contrario, console.log los errores.
+  3. Reemplaza console.log `nombreErrorValidacion(nombre)` en la funcion `validarFormulario` con una llamada a la funcion `manejarError`, y agrega la lista de errores. Para ello tenemos que:
+    - Crear una variable `errores` dentro de la funcion `validarFormulario` y hacerla igual a `nombreErrorValidacion(nombre)`,
+    - Pasar como argumento la variable `errores` a la funcion `manejarError`.
   
-  Run the form again and if name field is filled in correctly it should
-  print out 'Success', else it should print out one of the errors we have.
+  Corre el formulario de nuevo y si el campo nombre es llenado correctamente, deberia imprimir 'exito'. De lo contrario deberia imprimir uno de los errores que tenemos.
 
 
 6.Do validation for other fields
@@ -238,14 +191,15 @@ These comprise all of the validations for our form.
   you can add `0-9` inside the brackets, like `[A-z0-9]`. This allows any
   letter, and any number. You might want to allow spaces as well!
   
-  3. Now in `validateForm` we need to get errors from the `city` and `description` 
+  3. Now in `validarFormulario` we need to get errores from the `city` and `description` 
   fields. For that we have to change our variable `error`. It should be 
-  an object now. First of all, turn `nameValidationError(name)` into a key `name`
-  and a value `nameValidationError(name)`:
+  an object now. First of all, turn `nombreErrorValidacion(nombre)` into a key `nombre`
+  and a value `nombreErrorValidacion(nombre)`:
   
   ```
-  const errors = {
-    name: nameValidationError(name)
+  const errores = {
+    nombre: nombreErrorValidacion
+(nombre)
   };
   ```
 
