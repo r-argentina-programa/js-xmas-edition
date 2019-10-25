@@ -1,101 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" charset="UTF-8">
-  <title>Letter to Santa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+          charset="UTF-8">
+    <title>Carta a Papá Noel</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
-	<header>
-		<ul>
-			<li><a href="wish-list.html">Your Wish List</a></li>
-			<li><h1>Letter to Santa</h1></li>
-			<li><a href="result.html">Your Gift </a></li>
-		</ul>
-	</header>
+<header>
+    <ul>
+        <li><a href="wishlist.html">Tu lista de deseos</a></li>
+        <li><h1>Carta a santa</h1></li>
+        <li><a href="resultado.html">Tu regalo</a></li>
+    </ul>
+</header>
 
-	<section>
-		<img src="img/gift_top.svg" class="gift_top">
-	  <form enctype="multipart/form-data" method="post" name="letterToSanta" class="letterToSantaForm">
-	    <p>Dear Santa,</p>
-	    <p>My name is <input type="text" name="name" class="name"> and I live in
-	      <select name="city">
-	        <option value=""></option>
-	        <option value="adelaide">Adelaide</option>
-	        <option value="brisbane">Brisbane</option>
-	        <option value="cairns">Cairns</option>
-	        <option value="darwin">Darwin</option>
-	        <option value="melbourne">Melbourne</option>
-	        <option value="perth">Perth</option>
-	        <option value="sydney">Sydney</option>
-	      </select>.</p>
-				<div class="errorsBlock">
-					<span class="name"></span>
-					<span class="city"></span>
-				</div>
-			<p> I think this year I have been 
-	       <input type="radio" value="veryGood" name="goodVSnaughty"> Very Good
-	       <input type="radio" value="good" name="goodVSnaughty"> Good
-	       <input type="radio" value="naughty" name="goodVSnaughty" checked> A little  Naughty. </p>
-	    <p>This Christmas, I would really like to receive </p>
-	    <p>
-	      <textarea name="description" rows="4" cols="45"></textarea>
-	    </p>
-			<div class="errorsBlock">
-				<span class="description"></span>
-			</div>
-	    <p>Upload image <input type="file" name="wishImage" onchange="uploadFile()"></p>
-	    <p>
-	      <button name="submit" onclick="validateForm()">
-	        Send your letter
-	      </button>
-	    </p>
-	  </form>
+<section>
+    <img src="img/gift_top.svg" class="gift_top" alt="Imagen de un regalo">
+    <form method="post" name="formulario" id="carta-a-santa">
+        <p>Querido Santa,</p>
+        <p>Mi nombre es<input type="text" name="nombre"> y vivo en
+            <select name="ciudad">
+				<option value="">Selecciona...</option>
+                <option value="Buenos Aires">Bs. As.</option>
+                <option value="Catamarca">Catamarca</option>
+                <option value="Chaco">Chaco</option>
+                <option value="Chubut">Chubut</option>
+                <option value="Cordoba">Cordoba</option>
+                <option value="Corrientes">Corrientes</option>
+                <option value="Entre Rios">Entre Rios</option>
+                <option value="Formosa">Formosa</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="La Pampa">La Pampa</option>
+                <option value="La Rioja">La Rioja</option>
+                <option value="Mendoza">Mendoza</option>
+                <option value="Misiones">Misiones</option>
+                <option value="Neuquen">Neuquen</option>
+                <option value="Rio Negro">Rio Negro</option>
+                <option value="Salta">Salta</option>
+                <option value="San Juan">San Juan</option>
+                <option value="San Luis">San Luis</option>
+                <option value="Santa Cruz">Santa Cruz</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Sgo. del Estero">Sgo. del Estero</option>
+                <option value="Tierra del Fuego">Tierra del Fuego</option>
+                <option value="Tucuman">Tucuman</option>
+            </select>.
+        </p>
 
-		<img src="img/gift_box.svg" class="gift_bottom">
-	</section>
+        <p> Creo que este año he sido
+            <input type="radio" value="muy_bueno" name="comportamiento"> Muy bueno
+            <input type="radio" value="bueno" name="comportamiento"> Bueno
+            <input type="radio" value="maso" name="comportamiento" checked> Mas o menos.</p>
+        <p>Este año realmente me gustaría recibir</p>
+        <p>
+            <textarea name="descripcion-regalo" rows="4" cols="45"></textarea>
+        </p>
 
+        <ul id="errores">
+        </ul>
 
-	<div class="on-success hiddenWindow">
-		<div>
-			<h1>Your letter is sent to Santa</h1>
-			<button onclick="hideOnSuccessWindow()">Write another letter</button>
-			<button onclick="redirectToWishlist()">See all your wishes</button>
-		</div>
-	</div>
+        <p>
+            <button name="submit" id="enviar-carta">
+                Enviar carta
+            </button>
+        </p>
+    </form>
 
-	<footer>
-		<ul>
-			<li class="twitter">
-				Twitter:
-				<a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer">@NodeGirlsSydney</a>
-				<a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer">@NodeGirlsMelb</a>
-				<a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer">@NodeGirlsBri</a>
-				<a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer">@NodeGirlsPerth</a>
-			</li>
-			<li class="facebook">
-				Facebook:
-				<a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer">NodeGirlsAustralia</a>
-			</li>
-		</ul>
-		<ul>
-			<li class="website">
-				Website:
-				<a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
-			</li>
-			<li class="email">
-				e-mail:
-				<a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer">info@nodegirls.com.au</a>
-			</li>
-		</ul>
-	</footer>
+    <div id="exito" class="oculto">
+        <strong>Tu envío fue exitoso!</strong>
+    </div>
+
+    <img src="img/gift_box.svg" class="gift_bottom">
+</section>
+
+<footer>
+    <ul>
+        <li class="twitter">
+            Twitter:
+            <a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer">@NodeGirlsSydney</a>
+            <a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer">@NodeGirlsMelb</a>
+            <a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer">@NodeGirlsBri</a>
+            <a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer">@NodeGirlsPerth</a>
+        </li>
+        <li class="facebook">
+            Facebook:
+            <a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer">NodeGirlsAustralia</a>
+        </li>
+    </ul>
+    <ul>
+        <li class="website">
+            Website:
+            <a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
+        </li>
+        <li class="email">
+            e-mail:
+            <a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer">info@nodegirls.com.au</a>
+        </li>
+    </ul>
+</footer>
 
 <script src="js/main.js"></script>
+<script src="js/pruebas.js"></script>
 </body>
 
 </html>

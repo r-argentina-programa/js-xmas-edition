@@ -21,35 +21,25 @@ Siga las instrucciones en el archivo level1.md y escriba el código en su Editor
 
 ### Estructura
 
-La carpeta Css contiene archivos css que son responsables de los estilos y de cómo se ve nuestro proyecto en la web.
 
-carpeta img - un lugar donde podemos almacenar imágenes que usaremos en nuestra página web
-
-Las carpetas de instrucciones contienen archivos con instrucciones paso a paso sobre lo que debe hacer: Contiene 3 archivos:
-
-level1.md - para crear formularios web y diferentes tipos de entrada, expresiones regulares
-
-level2.md - para almacenar entradas en el almacenamiento local
-
-level3.md - para mostrar todos los deseos en la página de la lista de deseos y presente al azar en la página de resultados.
-
-extra-steps.md - tareas extras que puedes hacer si estás interesado en aprender más cosas y modificar tu pequeño proyecto.
-
-La carpeta Js contiene archivos JavaScript que hacen que nuestro proyecto funcione, define el contenido y hace que la página estática sea funcional. Contiene el archivo main.js donde usted escribe todo su código. answers.js - archivo con todo el código de trabajo.
-
-index.html - un fichero responsable de la estructura de nuestro proyecto.
-
-result.html and wish-list.html - nuestras otras 2 páginas de resultados o para buscar resultados - donde Santa elige tu regalo y wish-list - una lista de tus deseos.
-
-html-form-description.txt - un archivo con una explicación detallada sobre el formulario HTML y diferentes tipos de etiquetas de entrada con sus atributos.
-
-regular-expressions.txt - un archivo con enlaces a la hoja de trucos, más información y juegos con Expresiones Regulares o RegExp.
-
-Readme.md - un archivo con explicaciones y cualquier información sobre el proyecto, cómo ejecutarlo, para qué sirve, etc.
-
-cheat-sheet.md - archivos con una vista rápida de los nombres de las claves y sus explicaciones.
-
-LICENSE - nuestro archivo de licencia del MIT.
+| carpeta | descripcion |
+-----------|--------------
+| css | La carpeta Css contiene archivos css que son responsables de los estilos y de cómo se ve nuestro proyecto en la web. |
+| img | carpeta img - un lugar donde podemos almacenar imágenes que usaremos en nuestra página web |
+| instrucciones | Las carpetas de instrucciones contienen archivos con instrucciones paso a paso sobre lo que debe hacer: Contiene 3 archivos: |
+|- nivel1.md|para crear formularios web y diferentes tipos de entrada, expresiones regulares|
+|- nivel2.md|para almacenar entradas en el almacenamiento local|
+|- nivel3.md|para mostrar todos los deseos en la página de la lista de deseos y presente al azar en la página de resultados.|
+|- extra.md|tareas extras que puedes hacer si estás interesado en aprender más cosas y modificar tu pequeño proyecto.|
+|js|La carpeta Js contiene archivos JavaScript que hacen que nuestro proyecto funcione, define el contenido y hace que la página estática sea funcional. Contiene el archivo main.js donde usted escribe todo su código. answers.js - archivo con todo el código de trabajo.|
+|index.html|un archivo responsable de la estructura de nuestro proyecto.|
+|result.html|nuestras otras 2 páginas de resultados o para buscar resultados - donde Santa elige tu regalo|
+|wish-list.html| wishlist - una lista de tus deseos.|
+|html-form-description.txt|un archivo con una explicación detallada sobre el formulario HTML y diferentes tipos de etiquetas de entrada con sus atributos.|
+|regular-expressions.txt|un archivo con enlaces a la hoja de trucos, más información y juegos con Expresiones Regulares o RegExp.|
+|Readme.md|un archivo con explicaciones y cualquier información sobre el proyecto, cómo ejecutarlo, para qué sirve, etc.|
+|cheatsheet.md|un machete con una vista rápida de los nombres claves y sus explicaciones.|
+|LICENSE|nuestro archivo de licencia del MIT.|
 
 
 
