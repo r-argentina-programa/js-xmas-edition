@@ -1,7 +1,5 @@
-const form = document.querySelector("#carta-a-santa");
-
 function probarValidarNombre() {
-  const nombre = form.nombre.value;
+  nombre = form.nombre.value;
   console.assert(
     validarNombre(nombre) !== 'Poco', 'Validar nombre no validó que el nombre no sea vacío'
   );
@@ -14,13 +12,13 @@ function probarValidarNombre() {
 }
 
 function probarValidarciudad() {
-    const ciudad = form.ciudad.value;
+    ciudad = form.ciudad.value;
     console.assert( validarCiudad(ciudad) !== "No hay ciudad",
     "Falló la comprobacion de ciudad");
 }
 
 function probarValidardescripcion() {
-    const descripcion = form["descripcion-regalo"].value;
+    descripcion = form["descripcion-regalo"].value;
     console.assert(validarDescripcionRegalo(descripcion) !== "No hay descripcion",
     "Falló la comprobacion de descripcion nula");
     console.assert(validarDescripcionRegalo(descripcion) !== "Mucha descripcion",
