@@ -1,15 +1,28 @@
+const form = document.querySelector("#carta-a-santa");
+
 function probarValidarNombre() {
+  const nombre = form.nombre.value;
   console.assert(
-      validarNombre('') === 'Este campo debe tener al menos 1 caracter',
-      'Validar nombre no validó que el nombre no sea vacío',
+    validarNombre(nombre) !== 'Poco', 'Validar nombre no validó que el nombre no sea vacío'
   );
 
   console.assert(
-      validarNombre(
-          '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111') ===
-      'Este campo debe tener menos de 50 caracteres',
-      'Validar nombre no validó que el nombre sea menor a 50 caracteres',
+    validarNombre(nombre) !== 'Mucho', 'Validar nombre no validó que el nombre sea menor a 50 caracteres'
   );
+
+  console.assert(validarNombre(nombre) !== "Caracter Invalido","No funciona el regex en validar nombre");
 }
 
-probarValidarNombre();
+function probarValidarciudad() {
+    const ciudad = form.ciudad.value;
+    console.assert( validarCiudad(ciudad) !== "No hay ciudad",
+    "Falló la comprobacion de ciudad");
+}
+
+function probarValidardescripcion() {
+    const descripcion = form["descripcion-regalo"].value;
+    console.assert(validarDescripcionRegalo(descripcion) !== "No hay descripcion",
+    "Falló la comprobacion de descripcion nula");
+    console.assert(validarDescripcionRegalo(descripcion) !== "Mucha descripcion",
+    "Falló la comprobacion de descripcion para muchos caracteres");
+}
