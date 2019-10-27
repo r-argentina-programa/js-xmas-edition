@@ -1,112 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-          charset="UTF-8">
-    <title>Carta a Papá Noel</title>
+	<head>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
+			charset="UTF-8"
+		/>
+		<title>Carta a Papá Noel</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/index.css">
-</head>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,900" rel="stylesheet" />
+		<link rel="stylesheet" href="css/main.css" />
+		<link rel="stylesheet" href="css/index.css" />
+	</head>
 
-<body>
+	<body>
+		<header>
+			<ul>
+				<li><a href="wishlist.html">Tu lista de deseos</a></li>
+				<li><h1>Carta a santa</h1></li>
+				<li><a href="resultado.html">Tu regalo</a></li>
+			</ul>
+		</header>
 
-<header>
-    <ul>
-        <li><a href="wishlist.html">Tu lista de deseos</a></li>
-        <li><h1>Carta a santa</h1></li>
-        <li><a href="resultado.html">Tu regalo</a></li>
-    </ul>
-</header>
+		<section>
+			<img src="img/gift_top.svg" class="gift_top" alt="Imagen de un regalo" />
+			<form method="post" name="formulario" id="carta-a-santa">
+				<p>Querido Santa,</p>
+				<p>
+					Mi nombre es<input type="text" name="nombre" id="nombre" value="Fabricio" /> y vivo en
+					<select name="ciudad">
+						<option value="">Selecciona...</option>
+						<option value="Buenos Aires">Bs. As.</option>
+						<option value="Catamarca">Catamarca</option>
+						<option value="Chaco">Chaco</option>
+						<option value="Chubut">Chubut</option>
+						<option value="Cordoba">Cordoba</option>
+						<option value="Corrientes">Corrientes</option>
+						<option value="Entre Rios">Entre Rios</option>
+						<option value="Formosa">Formosa</option>
+						<option value="Jujuy">Jujuy</option>
+						<option value="La Pampa">La Pampa</option>
+						<option value="La Rioja">La Rioja</option>
+						<option value="Mendoza">Mendoza</option>
+						<option value="Misiones">Misiones</option>
+						<option value="Neuquen">Neuquen</option>
+						<option value="Rio Negro">Rio Negro</option>
+						<option value="Salta">Salta</option>
+						<option value="San Juan">San Juan</option>
+						<option value="San Luis">San Luis</option>
+						<option value="Santa Cruz">Santa Cruz</option>
+						<option value="Santa Fe">Santa Fe</option>
+						<option value="Sgo. del Estero">Sgo. del Estero</option>
+						<option value="Tierra del Fuego">Tierra del Fuego</option>
+						<option value="Tucuman">Tucuman</option> </select
+					>.
+				</p>
 
-<section>
-    <img src="img/gift_top.svg" class="gift_top" alt="Imagen de un regalo">
-    <form method="post" name="formulario" id="carta-a-santa">
-        <p>Querido Santa,</p>
-        <p>Mi nombre es<input type="text" name="nombre" id="nombre" value="Fabricio"> y vivo en
-            <select name="ciudad">
-				<option value="">Selecciona...</option>
-                <option value="Buenos Aires">Bs. As.</option>
-                <option value="Catamarca">Catamarca</option>
-                <option value="Chaco">Chaco</option>
-                <option value="Chubut">Chubut</option>
-                <option value="Cordoba">Cordoba</option>
-                <option value="Corrientes">Corrientes</option>
-                <option value="Entre Rios">Entre Rios</option>
-                <option value="Formosa">Formosa</option>
-                <option value="Jujuy">Jujuy</option>
-                <option value="La Pampa">La Pampa</option>
-                <option value="La Rioja">La Rioja</option>
-                <option value="Mendoza">Mendoza</option>
-                <option value="Misiones">Misiones</option>
-                <option value="Neuquen">Neuquen</option>
-                <option value="Rio Negro">Rio Negro</option>
-                <option value="Salta">Salta</option>
-                <option value="San Juan">San Juan</option>
-                <option value="San Luis">San Luis</option>
-                <option value="Santa Cruz">Santa Cruz</option>
-                <option value="Santa Fe">Santa Fe</option>
-                <option value="Sgo. del Estero">Sgo. del Estero</option>
-                <option value="Tierra del Fuego">Tierra del Fuego</option>
-                <option value="Tucuman">Tucuman</option>
-            </select>.
-        </p>
+				<p>
+					Creo que este año he sido
+					<input type="radio" value="muy_bueno" name="comportamiento" /> Muy bueno
+					<input type="radio" value="bueno" name="comportamiento" /> Bueno
+					<input type="radio" value="maso" name="comportamiento" checked /> Mas o menos.
+				</p>
+				<p>Este año realmente me gustaría recibir</p>
+				<p>
+					<textarea name="descripcion-regalo" rows="4" cols="45"></textarea>
+				</p>
 
-        <p> Creo que este año he sido
-            <input type="radio" value="muy_bueno" name="comportamiento"> Muy bueno
-            <input type="radio" value="bueno" name="comportamiento"> Bueno
-            <input type="radio" value="maso" name="comportamiento" checked> Mas o menos.</p>
-        <p>Este año realmente me gustaría recibir</p>
-        <p>
-            <textarea name="descripcion-regalo" rows="4" cols="45"></textarea>
-        </p>
+				<ul id="errores"></ul>
 
-        <ul id="errores">
-        </ul>
+				<p>
+					<button name="submit" id="enviar-carta">
+						Enviar carta
+					</button>
+				</p>
+			</form>
 
-        <p>
-            <button name="submit" id="enviar-carta">
-                Enviar carta
-            </button>
-        </p>
-    </form>
+			<div id="exito" class="oculto">
+				<strong>Tu envío fue exitoso!</strong>
+			</div>
 
-    <div id="exito" class="oculto">
-        <strong>Tu envío fue exitoso!</strong>
-    </div>
+			<img src="img/gift_box.svg" class="gift_bottom" />
+		</section>
 
-    <img src="img/gift_box.svg" class="gift_bottom">
-</section>
+		<footer>
+			<ul>
+				<li class="twitter">
+					Twitter:
+					<a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer"
+						>@NodeGirlsSydney</a
+					>
+					<a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer"
+						>@NodeGirlsMelb</a
+					>
+					<a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer"
+						>@NodeGirlsBri</a
+					>
+					<a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer"
+						>@NodeGirlsPerth</a
+					>
+				</li>
+				<li class="facebook">
+					Facebook:
+					<a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer"
+						>NodeGirlsAustralia</a
+					>
+				</li>
+			</ul>
+			<ul>
+				<li class="website">
+					Website:
+					<a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
+				</li>
+				<li class="email">
+					e-mail:
+					<a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer"
+						>info@nodegirls.com.au</a
+					>
+				</li>
+			</ul>
+		</footer>
 
-<footer>
-    <ul>
-        <li class="twitter">
-            Twitter:
-            <a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer">@NodeGirlsSydney</a>
-            <a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer">@NodeGirlsMelb</a>
-            <a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer">@NodeGirlsBri</a>
-            <a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer">@NodeGirlsPerth</a>
-        </li>
-        <li class="facebook">
-            Facebook:
-            <a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer">NodeGirlsAustralia</a>
-        </li>
-    </ul>
-    <ul>
-        <li class="website">
-            Website:
-            <a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
-        </li>
-        <li class="email">
-            e-mail:
-            <a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer">info@nodegirls.com.au</a>
-        </li>
-    </ul>
-</footer>
-
-<script src="js/main-mio.js"></script>
-<script src="js/pruebas.js"></script>
-</body>
-
+		<script src="js/main.js"></script>
+		<script src="js/pruebas.js"></script>
+	</body>
 </html>
