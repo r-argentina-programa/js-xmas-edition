@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function probarValidarNombre() {
   console.assert(
       validarNombre('') === 'Este campo debe tener al menos 1 caracter',
@@ -13,3 +14,10 @@ function probarValidarNombre() {
 }
 
 probarValidarNombre();
+=======
+function sumar(a, b) {
+  return a + b;
+}
+
+console.assert(sumar(1, 2) === 3, 'la suma de 1 + 2 no dio 3');
+>>>>>>> parent of e6b7fbd... crea los archivos necesarios para la tarea de la clase 7
