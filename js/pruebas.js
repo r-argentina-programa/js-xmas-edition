@@ -17,4 +17,3 @@ console.assert(verificarInputNoVacio("") === false, 'la verificacion de input va
 
 console.assert(verificarInputContieneSoloLetras("!@#$!@!@#>><><asd314>"), "la verificacion de input conteniendo solo letras no dio false!")
 console.assert(verificarInputContieneSoloLetras("sd314"), "la verificacion de input conteniendo solo letras no dio false!")
-

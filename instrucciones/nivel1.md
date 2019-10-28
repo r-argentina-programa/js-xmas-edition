@@ -29,7 +29,7 @@ Las validaciones de los formularios del lado del cliente se escriben en JavaScri
 Validar un formulario con javascript nos ahorra muchas llamadas 
 innecesarias al servidor.
 
-También podemos  validar formularios directamente con HTML, que es una
+También podemos validar formularios directamente con HTML, que es una
 funcionalidad relativamente nueva.
 
 Más info sobre el tema en: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms/Data_form_validation
@@ -60,20 +60,23 @@ Para validar nuestro formulario, vamos a tener  que hacer lo siguiente:
     Además de `document.querySelector()`, también se puede usar el nombre
     del formulario para acceder a sus campos.
 
-    
+    **
    `const name = document.formulario.nombre.value;`
 
-   TODO: now it is your turn to get other values out. Create variables called
-   `city`, `behavior`, `description` and store in them appropriate values 
-   from the form.
+   TODO: Ahora crear lo mismo para las variables:
+   - ciudad
+   - comportamiento
+   - descripcionRegalo
    
    
 2.Validar que el nombre sea válido y escribir una prueba
 ================================
     
   Agregar algunas validaciones al nombre.
-  - Si `nombre` está vacío, imprimir el error: 'Este campo debe tener al menos 1 caracter'
-  - Si `nombre` es mayor a 50 caracteres, imprimir el error: 'Este campo debe tener menos de 250 caracteres'
+  - Si `nombre` está vacío, imprimir el error: '
+  Este campo debe tener al menos 1 caracter'
+  - Si `nombre` es mayor a 50 caracteres, imprimir 
+  el error: 'Este campo debe tener menos de 50 caracteres'
 
 
   Ahora vamos a hacer una validación más interesante.
