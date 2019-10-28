@@ -5,3 +5,10 @@ function validarForm(event) {
     manejarErrores()
     if (verificarTodo() === true) { exito() }
 }
+
+
+
+
+
+
+
