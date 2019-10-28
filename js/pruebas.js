@@ -1,5 +1,4 @@
 console.assert(verificarInputMenosDe50Caracteres("1234567890-1234567890-1234567890-1234567890-1234567890") === false, 'la verificacion de la funcion con menos de 50 cantidad de caracteres no dio false');
-<<<<<<< HEAD
 
 console.assert(verificarInputMenosDe100Caracteres("1234567890-1234567890-1234567890-1234567890-12345678901234567890-1234567890-1234567890-1234567890-1234567890") === false, 'la verificaciones del input con menos de 100 caracteres no dio false!')
 
@@ -19,4 +18,3 @@ console.assert(verificarInputNoVacio("") === false, 'la verificacion de input va
 console.assert(verificarInputContieneSoloLetras("!@#$!@!@#>><><asd314>"), "la verificacion de input conteniendo solo letras no dio false!")
 console.assert(verificarInputContieneSoloLetras("sd314"), "la verificacion de input conteniendo solo letras no dio false!")
 
->>>>>>> parent of e5a7b0d... Revert "Tarea clase 7"
