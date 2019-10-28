@@ -5,13 +5,3 @@ function validarForm(event) {
     manejarErrores()
     if (verificarTodo() === true) { exito() }
 }
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
->>>>>>> parent of f663781... Revert "Tarea clase 7"
