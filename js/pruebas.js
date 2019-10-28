@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 console.assert(verificarInputMenosDe50Caracteres("1234567890-1234567890-1234567890-1234567890-1234567890") === false, 'la verificacion de la funcion con menos de 50 cantidad de caracteres no dio false');
 <<<<<<< HEAD
 
@@ -20,3 +21,10 @@ console.assert(verificarInputContieneSoloLetras("!@#$!@!@#>><><asd314>"), "la ve
 console.assert(verificarInputContieneSoloLetras("sd314"), "la verificacion de input conteniendo solo letras no dio false!")
 
 >>>>>>> parent of e5a7b0d... Revert "Tarea clase 7"
+=======
+function sumar(a, b) {
+  return a + b;
+}
+
+console.assert(sumar(1, 2) === 3, 'la suma de 1 + 2 no dio 3');
+>>>>>>> parent of dfe196b... crea los archivos necesarios para la tarea de la clase 7
