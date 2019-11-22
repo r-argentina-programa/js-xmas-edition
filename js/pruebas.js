@@ -1,4 +1,4 @@
-function probarValidarNombre() {
+/*function probarValidarNombre() {
   console.assert(
       validarNombre('') === 'Este campo debe tener al menos 1 caracter',
       'Validar nombre no validó que el nombre no sea vacío',
@@ -13,3 +13,4 @@ function probarValidarNombre() {
 }
 
 probarValidarNombre();
+*/
