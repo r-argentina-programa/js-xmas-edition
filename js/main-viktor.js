@@ -26,4 +26,19 @@ function validarCiudad(ciudad) {
     if (ciudad.length === 0) {
         return ('Debes elegir una ciudad, porque si no, Papa Noel no sabe donde ir cabeza')
     }
+
+    return '';
+}
+
+
+function validarDescripcionRegalo(descripcionRegalo) {
+    if (descripcionRegalo.length === 0) {
+        return ('¿No queres pedirle nada de Papa Noel?');
+    }
+
+    if (descripcionRegalo.length > 20) {
+        return ('No te sarpes');
+    }
+
+    return '';
 }
