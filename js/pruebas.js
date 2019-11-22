@@ -13,3 +13,12 @@ function probarValidarNombre() {
 }
 
 probarValidarNombre();
+
+function probarValidarCiudad() {
+    console.assert(
+        validarCiudad('') === 'Debes elegir una ciudad, porque si no, Papa Noel no sabe donde ir cabeza',
+        'Validar ciudad no validó que el cuadro este vacio'
+    );
+}
+
+probarValidarCiudad();

@@ -21,3 +21,9 @@ function validarNombre(nombre) {
 
     return '';
 }
+
+function validarCiudad(ciudad) {
+    if (ciudad.length === 0) {
+        return ('Debes elegir una ciudad, porque si no, Papa Noel no sabe donde ir cabeza')
+    }
+}
