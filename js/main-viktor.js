@@ -36,7 +36,7 @@ function validarDescripcionRegalo(descripcionRegalo) {
         return ('¿No queres pedirle nada de Papa Noel?');
     }
 
-    if (descripcionRegalo.length > 20) {
+    if (descripcionRegalo.length >= 100) {
         return ('No te sarpes');
     }
 
