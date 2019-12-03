@@ -1,5 +1,5 @@
-const $form = document.querySelector('#carta-a-santa');
-
+const $form = document.querySelector("#carta-a-santa");
+$form.onsubmit = validarFormulario;
 const nombre = $form.nombre.value;
 const ciudad = $form.ciudad.value;
 const comportamiento = $form.comportamiento.value;
@@ -19,6 +19,10 @@ function validarNombre(nombre) {
         return ('Este campo debe tener menos de 50 caracteres')
     }
 
+    if (!/^[a-z]+$/i.test(nombre)) {
+        return "El campo nombre solo acepta letras"
+    }
+
     return '';
 }
 
@@ -32,13 +36,53 @@ function validarCiudad(ciudad) {
 
 
 function validarDescripcionRegalo(descripcionRegalo) {
-    if (descripcionRegalo.length === 0) {
-        return ('¿No queres pedirle nada de Papa Noel?');
-    }
-
     if (descripcionRegalo.length >= 100) {
-        return ('No te sarpes');
+        return "El campo descripcion es muy largo";
+    } else if (descripcionRegalo.length === 0) {
+        return "El campo descripcion no puede estar vacio";
+    } else if (!/^[a-z0-9 ]+$/i.test(descripcionRegalo)) {
+        return "El campo descripcion solo puede tener numeros y letras"
+    } else {
+        return '';
     }
 
-    return '';
 }
+
+
+function validarFormulario(event) {
+    const $form = document.querySelector("#carta-a-santa");
+    
+    const nombre = $form.nombre.value;
+    const ciudad = $form.ciudad.value;
+    const descripcionRegalo = $form["descripcion-regalo"].value;
+
+
+    const errorNombre = validarNombre(nombre);
+    const errorCiudad = validarCiudad(ciudad);
+    const errorDescripcionRegalo = validarDescripcionRegalo(descripcionRegalo);
+
+    const errores = {
+        nombre: errorNombre,
+        ciudad: errorCiudad,
+        descripcionRegalo: errorDescripcionRegalo,
+    };
+
+
+
+    manejarErrores([errorNombre, errorCiudad, errorDescripcionRegalo]);
+
+    event.preventDefault();
+}
+
+function manejarErrores(errores) {
+    errorNombre = errores[0]; //nombre
+    errorCiudad = errores[1]; //ciudad
+    errorDescripcionRegalo = errores[2] //descripcionRegalo
+
+    if(errorNombre) {
+        $form.nombre.className = "error";
+    } else {
+        $form.nombre.className = "";
+    }
+}
+
