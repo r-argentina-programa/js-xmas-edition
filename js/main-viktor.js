@@ -67,22 +67,38 @@ function validarFormulario(event) {
         descripcionRegalo: errorDescripcionRegalo,
     };
 
-
-
-    manejarErrores([errorNombre, errorCiudad, errorDescripcionRegalo]);
+    manejarErrores(errores);
 
     event.preventDefault();
 }
 
 function manejarErrores(errores) {
-    errorNombre = errores[0]; //nombre
-    errorCiudad = errores[1]; //ciudad
-    errorDescripcionRegalo = errores[2] //descripcionRegalo
+    errorNombre = errores.nombre; //nombre
+    errorCiudad = errores.ciudad; //ciudad
+    errorDescripcionRegalo = errores.descripcionRegalo //descripcionRegalo
 
     if(errorNombre) {
         $form.nombre.className = "error";
     } else {
         $form.nombre.className = "";
     }
+
+    if(errorCiudad) {
+        $form.ciudad.className = "error";
+    } else {
+        $form.ciudad.className = "";
+    }
+
+    if(errores.descripcionRegalo) {
+        $form['descripcion-regalo'].className = "error";
+    } else {
+        $form['descripcion-regalo'].className = "";
+    }
+
+
+    
+   
+    
+    
 }
 
