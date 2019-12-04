@@ -51,7 +51,7 @@ function validarDescripcionRegalo(descripcionRegalo) {
 
 function validarFormulario(event) {
     const $form = document.querySelector("#carta-a-santa");
-    
+
     const nombre = $form.nombre.value;
     const ciudad = $form.ciudad.value;
     const descripcionRegalo = $form["descripcion-regalo"].value;
@@ -64,7 +64,7 @@ function validarFormulario(event) {
     const errores = {
         nombre: errorNombre,
         ciudad: errorCiudad,
-        descripcionRegalo: errorDescripcionRegalo,
+        'descripcion-regalo': errorDescripcionRegalo,
     };
 
     manejarErrores(errores);
@@ -73,32 +73,48 @@ function validarFormulario(event) {
 }
 
 function manejarErrores(errores) {
-    errorNombre = errores.nombre; //nombre
-    errorCiudad = errores.ciudad; //ciudad
-    errorDescripcionRegalo = errores.descripcionRegalo //descripcionRegalo
 
-    if(errorNombre) {
-        $form.nombre.className = "error";
-    } else {
-        $form.nombre.className = "";
-    }
+    const keys = Object.keys(errores);
+    console.log(keys);
 
-    if(errorCiudad) {
-        $form.ciudad.className = "error";
-    } else {
-        $form.ciudad.className = "";
-    }
+    keys.forEach(function (key) {
+        const error = errores[key];
 
-    if(errores.descripcionRegalo) {
-        $form['descripcion-regalo'].className = "error";
-    } else {
-        $form['descripcion-regalo'].className = "";
-    }
+        if (error) {    
+            $form[key].className = "error"
+        } else {
+            $form[key].className = ""
+        }
+    });
 
 
-    
-   
-    
-    
+
+    // errorNombre = errores.nombre; //nombre
+    // errorCiudad = errores.ciudad; //ciudad
+    // errorDescripcionRegalo = errores.descripcionRegalo //descripcionRegalo
+
+    // if(errorNombre) {
+    //     $form.nombre.className = "error";
+    // } else {
+    //     $form.nombre.className = "";
+    // }
+
+    // if(errorCiudad) {
+    //     $form.ciudad.className = "error";
+    // } else {
+    //     $form.ciudad.className = "";
+    // }
+
+    // if(errores.descripcionRegalo) {
+    //     $form['descripcion-regalo'].className = "error";
+    // } else {
+    //     $form['descripcion-regalo'].className = "";
+    // }
+
+
+
+
+
+
 }
 
