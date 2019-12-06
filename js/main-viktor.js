@@ -73,6 +73,7 @@ function validarFormulario(event) {
        $form.className = 'oculto';
        document.querySelector('#exito').className = '';
    }
+   
 
     event.preventDefault();
 }
