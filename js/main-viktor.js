@@ -99,6 +99,6 @@ function manejarErrores(errores) {
             $form[key].className = ""
         }
     });
-
+    return cantidadErrores;
 }
 
