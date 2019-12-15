@@ -74,10 +74,12 @@ function validarFormulario(event) {
    if(esExito){
        $form.className = 'oculto';
        document.querySelector('#exito').className = '';
+       setTimeout(redireccionarWishlist, 5000);
 
-    
-
-   }
+       function redireccionarWishlist() {
+        window.location.href = "C:/Users/Maximiliano/Documents/GitHub/js-xmas-edition/wishlist.html";
+        }
+    }
    
 
 
