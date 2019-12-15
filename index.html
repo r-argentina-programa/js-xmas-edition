@@ -66,7 +66,7 @@
         </ul>
 
         <p>
-            <button name="submit" id="enviar-carta">
+            <button onclick="setTimeout(funcion, 5000);" name="submit" id="enviar-carta">
                 Enviar carta
             </button>
         </p>
@@ -104,7 +104,11 @@
         </li>
     </ul>
 </footer>
-
+<script>
+    function funcion() {
+    alert('Hola');
+    }
+</script>
 <script src="js/main-viktor.js"></script>
 <script src="js/pruebas.js"></script>
 </body>
