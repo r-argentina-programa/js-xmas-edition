@@ -10,6 +10,8 @@ console.log(ciudad);
 console.log(comportamiento);
 console.log(descripcionRegalo);
 
+
+
 function validarNombre(nombre) {
     if (nombre.length === 0) {
         return ('Este campo debe tener al menos 1 caracter')
@@ -72,8 +74,14 @@ function validarFormulario(event) {
    if(esExito){
        $form.className = 'oculto';
        document.querySelector('#exito').className = '';
-   }
+       setTimeout(redireccionarWishlist, 5000);
+
+       function redireccionarWishlist() {
+        window.location.href = "C:/Users/Maximiliano/Documents/GitHub/js-xmas-edition/wishlist.html";
+        }
+    }
    
+
 
     event.preventDefault();
 }

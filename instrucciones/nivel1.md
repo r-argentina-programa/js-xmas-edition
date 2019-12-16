@@ -311,6 +311,9 @@ El método `forEach` lo podemos ver [en MDN directamente](https://developer.mozi
 TAREA:
   3. En 5 segundos vamos redireccionar al usuario a `wishlist.html`,
   usando `setTimeout` y `window.location.href`.
+  4. Limpiar la pantalla de errores
+  5. A las 2 tareas de la clase 6, ponerles las validaciones que consideren
+      necesarias.(regExp, forEach, Objetos, poner estilos, mostrar errores en pantalla y escribir pruebas)
 
 
 //////////////////////////////////////////////////////////////////////////////////
