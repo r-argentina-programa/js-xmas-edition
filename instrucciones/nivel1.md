@@ -200,7 +200,7 @@ Y ahora debería funcionar.
   };
   ```
 
-  4. Ahoral o mismo para `ciudad` y `descripcion-regalo`
+  4. Ahora lo mismo para `ciudad` y `descripcion-regalo`
 
 Atención: No se olviden de la `,` para separar múltiples valores.
 
@@ -222,7 +222,7 @@ Atención: No se olviden de la `,` para separar múltiples valores.
   let cuentaErrores = 0;
   ```
   
-  6. Verificamos si hay un error en `nombr`e
+  6. Verificamos si hay un error en `nombre`
   
   ```
   if (errores.nombre) {
