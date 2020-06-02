@@ -89,21 +89,21 @@ function manejarErrores(errores) {
     errorDescripcionRegalo = errores.descripcionRegalo;
 
     if (errorNombre) {
-        nombre.className = 'error';
+        $form.nombre.className = 'error';
     } else {
-        nombre.className = '';
+        $form.nombre.className = '';
     }
 
     if (errorCiudad) {
-        ciudad.className = 'error';
+        $form.ciudad.className = 'error';
     } else {
-        ciudad.className = '';
+        $form.ciudad.className = '';
     }
 
     if (errorDescripcionRegalo) {
-        descripcionRegalo.className = 'error';
+        $form['descripcion-regalo'].className = 'error';
     } else {
-        descripcionRegalo.className = '';
+        $form['descripcion-regalo'].className = '';
     }
 
 }
