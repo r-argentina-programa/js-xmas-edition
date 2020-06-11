@@ -28,7 +28,7 @@ function probarValidarNombre() {
 
 function probarValidarCiudad() {
     console.assert(
-        validarCiudad('') === 'Este campo debe contener al menos 1 caracter',
+        validarCiudad('') === 'El campo ciudad debe contener al menos 1 caracter',
         'Validar ciudad no validó que la ciudad tenga al menos 1 caracter',
     );
 
@@ -40,7 +40,7 @@ function probarValidarCiudad() {
 
 function probarValidarDescripcionRegalo() {
     console.assert(
-        validarDescripcionRegalo('') === 'Este campo debe contener al menos 1 caracter',
+        validarDescripcionRegalo('') === 'El campo descripción debe contener al menos 1 caracter',
         'Validar descripcion regalo no validó que la descripción del regalo tenga al menos 1 caracter',
     );
 

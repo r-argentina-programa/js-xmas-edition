@@ -28,7 +28,7 @@ function validarNombre(nombre) {
 
 function validarCiudad(ciudad) {
     if (ciudad.length === 0) {
-        return "Este campo debe contener al menos 1 caracter";
+        return "El campo ciudad debe contener al menos 1 caracter";
     }
 
     return "";
@@ -41,7 +41,7 @@ function validarDescripcionRegalo(descripcionRegalo) {
     }
 
     if (descripcionRegalo.length === 0) {
-        return "Este campo debe contener al menos 1 caracter";
+        return "El campo descripción debe contener al menos 1 caracter";
     }
 
     if (!/^[a-z0-9]+$/i.test(descripcionRegalo)) {
@@ -73,10 +73,15 @@ function validarFormulario(event) {
     const errores = {
         nombre: errorNombre,
         ciudad: errorCiudad,
-        descripcionRegalo: errorDescripcionRegalo,
+        'descripcion-regalo': errorDescripcionRegalo,
     };
 
-    manejarErrores(errores);
+    const esExito = manejarErrores(errores) === 0;
+
+    if (esExito){
+        $form.className = 'oculto';
+        document.querySelector('#exito').className = '';
+    }
 
 
 
@@ -84,27 +89,30 @@ function validarFormulario(event) {
 
 function manejarErrores(errores) {
 
-    errorNombre = errores.nombre;
-    errorCiudad = errores.ciudad;
-    errorDescripcionRegalo = errores.descripcionRegalo;
+    const keys = Object.keys (errores);
+    const $errores = document.querySelector('#errores');
+    let cantidadErrores = 0;
+    
 
-    if (errorNombre) {
-        $form.nombre.className = 'error';
-    } else {
-        $form.nombre.className = '';
-    }
+    keys.forEach(function (key){
+        const error = errores [key];
 
-    if (errorCiudad) {
-        $form.ciudad.className = 'error';
-    } else {
-        $form.ciudad.className = '';
-    }
+        if (error) {
+            cantidadErrores++;
+            $form[key].className = "error"
 
-    if (errorDescripcionRegalo) {
-        $form['descripcion-regalo'].className = 'error';
-    } else {
-        $form['descripcion-regalo'].className = '';
-    }
+            const $error = document.createElement('li');
+            $error.innerText = error;
+
+            $errores.appendChild($error);
+
+
+        }else{
+            $form[key].className = '';
+        }
+    });
+    
+    return cantidadErrores;
 
 }
 
