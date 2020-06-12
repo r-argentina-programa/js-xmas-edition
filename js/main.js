@@ -81,6 +81,7 @@ function validarFormulario(event) {
     if (esExito){
         $form.className = 'oculto';
         document.querySelector('#exito').className = '';
+        setTimeout (location.href = "wishlist.html", 5000);
     }
 
 
