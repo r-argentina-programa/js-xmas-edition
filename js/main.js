@@ -81,7 +81,7 @@ function validarFormulario(event) {
     if (esExito){
         $form.className = 'oculto';
         document.querySelector('#exito').className = '';
-        setTimeout (location.href = "wishlist.html", 5000);
+        setTimeout (function () {location.href = 'wishlist.html'}, 5000);
     }
 
 
@@ -106,10 +106,10 @@ function manejarErrores(errores) {
             $error.innerText = error;
 
             $errores.appendChild($error);
-
-
         }else{
             $form[key].className = '';
+            //$error.remove();
+            
         }
     });
     
