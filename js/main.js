@@ -3,6 +3,8 @@
 // console.log(comportamiento);
 // console.log(descripcionRegalo);
 
+
+
 const $form = document.querySelector('#carta-a-santa');
 const nombre = $form.nombre.value;
 const ciudad = $form.ciudad.value;
@@ -78,10 +80,12 @@ function validarFormulario(event) {
 
     const esExito = manejarErrores(errores) === 0;
 
-    if (esExito){
+    if (esExito) {
         $form.className = 'oculto';
         document.querySelector('#exito').className = '';
-        setTimeout (function () {location.href = 'wishlist.html'}, 5000);
+        setTimeout(function () {
+            location.href = 'wishlist.html'
+        }, 5000);
     }
 
 
@@ -90,31 +94,41 @@ function validarFormulario(event) {
 
 function manejarErrores(errores) {
 
-    const keys = Object.keys (errores);
+    const keys = Object.keys(errores);
     const $errores = document.querySelector('#errores');
     let cantidadErrores = 0;
-    
 
-    keys.forEach(function (key){
-        const error = errores [key];
+
+    keys.forEach(function (key) {
+
+        const error = errores[key];
 
         if (error) {
+
             cantidadErrores++;
-            $form[key].className = "error"
+            $form[key].className = "error" //Borde rojo
 
             const $error = document.createElement('li');
             $error.innerText = error;
 
             $errores.appendChild($error);
-        }else{
-            $form[key].className = '';
-            //$error.remove();
-            
+
+
+
+        } else {
+
+            $form[key].className = ''; //Opción válida
+            $errores.innerText = '';
+
         }
+
+
     });
-    
+
+
     return cantidadErrores;
 
 }
+
 
 $form.onsubmit = validarFormulario;
