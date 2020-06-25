@@ -122,9 +122,14 @@ function manejarErrores(errores) {
             //     console.log($errores.querySelectorAll(`#error-${key}`).innerText);
             // }
             //if (`error-${key}`.length === ''){
-                console.log($errores.querySelector('li'));
+              //  console.log($errores.querySelector('li'));
             //};
-            
+            const $error = $errores.querySelector(`#error-${key}`);
+            if ($error) {
+                
+                $error.innerText = '';
+                
+            }
         }
 
 
