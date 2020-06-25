@@ -110,16 +110,21 @@ function manejarErrores(errores) {
 
             const $error = document.createElement('li');
             $error.innerText = error;
-
+            $error.id = `error-${key}`;
+            
             $errores.appendChild($error);
-
-
 
         } else {
 
             $form[key].className = ''; //Opción válida
-            $errores.innerText = '';
+            // if ($errores.length > 0){
 
+            //     console.log($errores.querySelectorAll(`#error-${key}`).innerText);
+            // }
+            //if (`error-${key}`.length === ''){
+                console.log($errores.querySelector('li'));
+            //};
+            
         }
 
 
