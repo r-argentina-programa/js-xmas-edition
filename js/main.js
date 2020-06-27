@@ -79,7 +79,7 @@ function validarFormulario(event) {
     };
 
     const esExito = manejarErrores(errores) === 0;
-
+    
     if (esExito) {
         $form.className = 'oculto';
         document.querySelector('#exito').className = '';
@@ -88,14 +88,14 @@ function validarFormulario(event) {
         }, 5000);
     }
 
-
-
 }
 
 function manejarErrores(errores) {
 
     const keys = Object.keys(errores);
     const $errores = document.querySelector('#errores');
+    //$errores.innerText = '';
+    
     let cantidadErrores = 0;
 
 
@@ -110,35 +110,19 @@ function manejarErrores(errores) {
 
             const $error = document.createElement('li');
             $error.innerText = error;
-            $error.id = `error-${key}`;
             
             $errores.appendChild($error);
 
         } else {
 
             $form[key].className = ''; //Opción válida
-            // if ($errores.length > 0){
-
-            //     console.log($errores.querySelectorAll(`#error-${key}`).innerText);
-            // }
-            //if (`error-${key}`.length === ''){
-              //  console.log($errores.querySelector('li'));
-            //};
-            const $error = $errores.querySelector(`#error-${key}`);
-            if ($error) {
-                
-                $error.innerText = '';
-                
-            }
+    
         }
 
-
     });
-
 
     return cantidadErrores;
 
 }
-
 
 $form.onsubmit = validarFormulario;
