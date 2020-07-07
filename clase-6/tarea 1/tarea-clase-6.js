@@ -15,14 +15,14 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 document.querySelector('#siguiente-paso').onclick = function (event) {
 
     const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
-    
-    validarIngresoIntegrantes (cantidadIntegrantes);
-    
-    if (cantidadIntegrantes > 0){
+
+    validarIngresoIntegrantes(cantidadIntegrantes);
+
+    if (cantidadIntegrantes > 0) {
         mostrarBotonCalcular();
         crearUsuario(cantidadIntegrantes);
     }
-    
+
 }
 
 
@@ -30,30 +30,30 @@ document.querySelector('#siguiente-paso').onclick = function (event) {
 
 document.querySelector('#calcular').onclick = function () {
 
-    const edades  = document.querySelectorAll(".edades");//Trae las edades de los ingresantes
+    const edades = document.querySelectorAll(".edades"); //Trae las edades de los ingresantes
+    
+    validarIngresoEdad(edades)
 
-    //validarIngresos (edades);
-
-    mostrarMayor("mayor",calcularMayorEdad(edades));
-    mostrarMenor("menor",calcularMenorEdad(edades));
-    mostrarPromedio("promedio",calcularPromEdad(edades));
+    mostrarMayor("mayor", calcularMayorEdad(edades));
+    mostrarMenor("menor", calcularMenorEdad(edades));
+    mostrarPromedio("promedio", calcularPromEdad(edades));
     mostrarResultados();
-    
-   
-    
+
+
+
     //calculos es un NodeList con los párrafos
-    function mostrarMayor(texto,valor) { 
+    function mostrarMayor(texto, valor) {
         document.querySelector(`#${texto}-edad`).textContent = valor;
     }
 
-    function mostrarMenor(texto,valor){
+    function mostrarMenor(texto, valor) {
         document.querySelector(`#${texto}-edad`).textContent = valor;
     }
 
-    function mostrarPromedio(texto,valor){
+    function mostrarPromedio(texto, valor) {
         document.querySelector(`#${texto}-edad`).textContent = valor;
     }
- 
+
     event.preventDefault();
 
 }
@@ -64,45 +64,45 @@ document.querySelector('#resetear').onclick = resetear;
 
 
 
-function resetear(){
+function resetear() {
     resetearResultados();
     limpiarLabels();
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
-    
+
 
 }
 
-function resetearResultados(){
+function resetearResultados() {
     const integrantes = document.querySelectorAll('.integrante');
     //console.log(integrantes);
-    
-    for(let i = 0; i < integrantes.length; i++){
-        integrantes[i].remove();
-    }  
-} 
 
-function limpiarLabels(){
-    const labels = document.querySelectorAll('#integrantes > label');
-    for(let i = 0; i < labels.length; i++){
-        labels[i].remove();
+    for (let i = 0; i < integrantes.length; i++) {
+        integrantes[i].remove();
     }
-    
 }
 
-function limpiarInputs(){
+function limpiarLabels() {
+    const labels = document.querySelectorAll('#integrantes > label');
+    for (let i = 0; i < labels.length; i++) {
+        labels[i].remove();
+    }
+
+}
+
+function limpiarInputs() {
     const inputs = document.querySelectorAll('#integrantes > input');
-    for(let i = 0; i < inputs.length; i++){
+    for (let i = 0; i < inputs.length; i++) {
         inputs[i].remove();
     }
 }
 
-function mostrarBotonCalcular(){
+function mostrarBotonCalcular() {
     document.querySelector('#calcular').className = "";
 }
 
-function ocultarBotonCalcular(){
+function ocultarBotonCalcular() {
     document.querySelector('#calcular').className = "oculto";
 }
 
@@ -110,14 +110,14 @@ function mostrarResultados() {
     document.querySelector('#analisis').className = '';
 }
 
-function limpiarResultados(){
+function limpiarResultados() {
     document.querySelector('#analisis').className = 'oculto';
 
 }
 
 
-function validarIngresoIntegrantes (valoresIngresados) {
-    
+function validarIngresoIntegrantes(valoresIngresados) {
+
 
     if (valoresIngresados <= 0) {
         return "El número ingresado es incorrecto. No puede ser menor a cero.";
@@ -128,3 +128,16 @@ function validarIngresoIntegrantes (valoresIngresados) {
 
 //Function validarIngresoEdad probar con un forEach porque edades devuelve un NodeList
 
+function validarIngresoEdad(edades) {
+
+    edades.forEach(function (input) {
+        
+        if (input.value < 0) {
+            return "La edad ingresada no es correcta."
+        }
+
+        return "";
+
+    })
+
+}
