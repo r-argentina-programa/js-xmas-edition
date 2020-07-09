@@ -30,9 +30,9 @@ document.querySelector('#siguiente-paso').onclick = function (event) {
 
 document.querySelector('#calcular').onclick = function () {
 
-    const edades = document.querySelectorAll(".edades"); //Trae las edades de los ingresantes
+    const edades = document.querySelectorAll(".edades"); //Nodelist
     
-    validarIngresoEdad(edades)
+    validarIngresoEdades(edades);
 
     mostrarMayor("mayor", calcularMayorEdad(edades));
     mostrarMenor("menor", calcularMenorEdad(edades));
@@ -40,8 +40,6 @@ document.querySelector('#calcular').onclick = function () {
     mostrarResultados();
 
 
-
-    //calculos es un NodeList con los párrafos
     function mostrarMayor(texto, valor) {
         document.querySelector(`#${texto}-edad`).textContent = valor;
     }
@@ -126,18 +124,17 @@ function validarIngresoIntegrantes(valoresIngresados) {
     return "";
 }
 
-//Function validarIngresoEdad probar con un forEach porque edades devuelve un NodeList
 
-function validarIngresoEdad(edades) {
 
-    edades.forEach(function (input) {
+function validarIngresoEdades(edades) {
+
+    for (let i = 0; i < edades.length; i++){    
         
-        if (input.value < 0) {
+        if (edades[i].value <= 0) {
+
             return "La edad ingresada no es correcta."
         }
 
-        return "";
-
-    })
-
+    }
+    return "";
 }

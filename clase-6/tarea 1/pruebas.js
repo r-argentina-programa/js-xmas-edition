@@ -7,6 +7,15 @@ function probarValidarIngresoIntegrantes() {
 
 }
 
-probarValidarIngresoIntegrantes();
+function probarValidarIngresoEdades () {
+    
+    console.assert(
+        validarIngresoEdades ([{value: 0}]) === "La edad ingresada no es correcta.",
+        "ValidarIngresoEdades no validó que la edad sea correcta", 
+    );
 
-//NO FUNCIONA
+}
+
+probarValidarIngresoIntegrantes();
+probarValidarIngresoEdades ();
+
