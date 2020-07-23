@@ -11,3 +11,8 @@
 .edad{
     background-color: brown;
 }
+
+.error{
+    border: 2px solid red;
+}
+

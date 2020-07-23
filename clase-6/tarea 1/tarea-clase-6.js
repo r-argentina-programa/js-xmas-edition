@@ -8,59 +8,88 @@ el promedio del grupo familiar.
 Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuevamente, borrando los inputs ya creados (investigar cómo en MDN).
 */
 
-// CREAR USUARIO
+const $form = document.querySelector('#calculador-edades');
 
+const $botonSiguiente = $form.querySelector('#siguiente-paso'); 
+const $botonCalcular = $form.querySelector('#calcular');
+const $botonLimpiar = $form.querySelector('#resetear');
 
+function validarFormulario() {
 
-document.querySelector('#siguiente-paso').onclick = function (event) {
+    $botonSiguiente.onclick = function () {
 
-    const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
-
-    validarIngresoIntegrantes(cantidadIntegrantes);
-
-    if (cantidadIntegrantes > 0) {
-        mostrarBotonCalcular();
-        crearUsuario(cantidadIntegrantes);
-    }
-
-}
-
-
-//EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
-
-document.querySelector('#calcular').onclick = function () {
-
-    const edades = document.querySelectorAll(".edades"); //Nodelist
+        
+        const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
+        const errorIngresoIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
+        
     
-    validarIngresoEdades(edades);
+        
+        if (errorIngresoIntegrantes != '') {           
+            
+            //$form.ci.className = "oculto";
+            document.querySelector('#cantidad-integrantes').className = "error";
 
-    mostrarMayor("mayor", calcularMayorEdad(edades));
-    mostrarMenor("menor", calcularMenorEdad(edades));
-    mostrarPromedio("promedio", calcularPromEdad(edades));
-    mostrarResultados();
+            //-----------Mostrar error en interfaz usuario------
+                const $prueba = document.querySelector('#lista-errores');
+                //crear un li
+                const $li = document.createElement('li');
+                //crear un nodoTexto con el mensaje de error
+                const textoLi = document.createTextNode(errorIngresoIntegrantes);
+                //agregar hijo
+                $li.appendChild(textoLi);
+                $prueba.appendChild($li);
+            //--------------------------------------------------
 
+        }else {
+            mostrarBotonCalcular();
+            crearUsuario(cantidadIntegrantes);
+        }
 
-    function mostrarMayor(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
     }
 
-    function mostrarMenor(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
-    }
 
-    function mostrarPromedio(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
-    }
+    //EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
 
-    event.preventDefault();
+    $botonCalcular.onclick = function () {
+
+        const edades = document.querySelectorAll(".edades"); //Nodelist
+        const errorIngresoEdades = validarIngresoEdades(edades);
+        
+        const l = document.querySelector("input").className = 'error';
+        console.log(l);
+        /*
+        //Crear un contador de errores y hacer la función manejarErrores
+        //const datosCorrectos = manejarErrores === 0;
+        */
+
+        mostrarMayor("mayor", calcularMayorEdad(edades));
+        mostrarMenor("menor", calcularMenorEdad(edades));
+        mostrarPromedio("promedio", calcularPromEdad(edades));
+        mostrarResultados();
+
+
+        function mostrarMayor(texto, valor) {
+            document.querySelector(`#${texto}-edad`).textContent = valor;
+        }
+
+        function mostrarMenor(texto, valor) {
+            document.querySelector(`#${texto}-edad`).textContent = valor;
+        }
+
+        function mostrarPromedio(texto, valor) {
+            document.querySelector(`#${texto}-edad`).textContent = valor;
+        }
+
+
+        event.preventDefault();
+
+    }
+    
+
 
 }
 
-
-
-document.querySelector('#resetear').onclick = resetear;
-
-
+$botonLimpiar.onclick = resetear;
 
 function resetear() {
     resetearResultados();
@@ -68,13 +97,10 @@ function resetear() {
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
-
-
 }
 
 function resetearResultados() {
     const integrantes = document.querySelectorAll('.integrante');
-    //console.log(integrantes);
 
     for (let i = 0; i < integrantes.length; i++) {
         integrantes[i].remove();
@@ -116,25 +142,21 @@ function limpiarResultados() {
 
 function validarIngresoIntegrantes(valoresIngresados) {
 
-
     if (valoresIngresados <= 0) {
         return "El número ingresado es incorrecto. No puede ser menor a cero.";
     }
-
     return "";
 }
 
-
-
-function validarIngresoEdades(edades) {
+function validarIngresoEdades(edades) { 
 
     for (let i = 0; i < edades.length; i++){    
-        
-        if (edades[i].value <= 0) {
-
+        if (Number(edades[i].value) <= 0) {
             return "La edad ingresada no es correcta."
         }
-
     }
     return "";
 }
+
+
+$form.onsubmit = validarFormulario();
