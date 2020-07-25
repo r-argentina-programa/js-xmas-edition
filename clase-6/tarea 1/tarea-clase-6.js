@@ -18,7 +18,6 @@ function validarFormulario() {
 
     $botonSiguiente.onclick = function () {
 
-        
         const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
         const errorIngresoIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
         
@@ -40,13 +39,13 @@ function validarFormulario() {
                 $prueba.appendChild($li);
             //--------------------------------------------------
 
-        }else {
+        } else {
+            resetear();
             mostrarBotonCalcular();
             crearUsuario(cantidadIntegrantes);
         }
 
     }
-
 
     //EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
 
@@ -55,8 +54,7 @@ function validarFormulario() {
         const edades = document.querySelectorAll(".edades"); //Nodelist
         const errorIngresoEdades = validarIngresoEdades(edades);
         
-        const l = document.querySelector("input").className = 'error';
-        console.log(l);
+        
         /*
         //Crear un contador de errores y hacer la función manejarErrores
         //const datosCorrectos = manejarErrores === 0;
