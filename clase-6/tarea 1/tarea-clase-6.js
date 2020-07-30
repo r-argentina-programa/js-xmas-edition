@@ -10,7 +10,7 @@ Punto bonus: Crear un botón para "empezar de nuevo" que empiece el proceso nuev
 
 const $form = document.querySelector('#calculador-edades');
 
-const $botonSiguiente = $form.querySelector('#siguiente-paso'); 
+const $botonSiguiente = $form.querySelector('#siguiente-paso');
 const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 
@@ -19,25 +19,20 @@ function validarFormulario() {
     $botonSiguiente.onclick = function () {
 
         const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
-        const errorIngresoIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
-        
-    
-        
-        if (errorIngresoIntegrantes != '') {           
-            
-            //$form.ci.className = "oculto";
-            document.querySelector('#cantidad-integrantes').className = "error";
 
-            //-----------Mostrar error en interfaz usuario------
-                const $prueba = document.querySelector('#lista-errores');
-                //crear un li
-                const $li = document.createElement('li');
-                //crear un nodoTexto con el mensaje de error
-                const textoLi = document.createTextNode(errorIngresoIntegrantes);
-                //agregar hijo
-                $li.appendChild(textoLi);
-                $prueba.appendChild($li);
-            //--------------------------------------------------
+        if (validarIngresoIntegrantes(cantidadIntegrantes) != '') {
+
+            
+            document.querySelector('#cantidad-integrantes').className = 'error';
+
+            //------------Agrega mensaje error a la interfaz de usuario------------
+            const $listaErrores = document.querySelector('ul');
+            const $errorIntegrante = document.createElement('li');
+            const mensajeError = document.createTextNode(validarIngresoIntegrantes(cantidadIntegrantes));
+
+            $errorIntegrante.appendChild(mensajeError);
+            $listaErrores.appendChild($errorIntegrante);
+            //---------------------------------------------------------------------
 
         } else {
             resetear();
@@ -46,46 +41,40 @@ function validarFormulario() {
         }
 
     }
+}
 
-    //EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
+//EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
 
-    $botonCalcular.onclick = function () {
+$botonCalcular.onclick = function (errores) {
 
-        const edades = document.querySelectorAll(".edades"); //Nodelist
-        const errorIngresoEdades = validarIngresoEdades(edades);
-        
-        
-        /*
-        //Crear un contador de errores y hacer la función manejarErrores
-        //const datosCorrectos = manejarErrores === 0;
-        */
+    const edades = document.querySelectorAll(".edades"); //Nodelist        
 
-        mostrarMayor("mayor", calcularMayorEdad(edades));
-        mostrarMenor("menor", calcularMenorEdad(edades));
-        mostrarPromedio("promedio", calcularPromEdad(edades));
-        mostrarResultados();
+    errores.edad = validarIngresoEdades(edades);
+    console.log(errores);
+
+    mostrarMayor("mayor", calcularMayorEdad(edades));
+    mostrarMenor("menor", calcularMenorEdad(edades));
+    mostrarPromedio("promedio", calcularPromEdad(edades));
+    mostrarResultados();
 
 
-        function mostrarMayor(texto, valor) {
-            document.querySelector(`#${texto}-edad`).textContent = valor;
-        }
-
-        function mostrarMenor(texto, valor) {
-            document.querySelector(`#${texto}-edad`).textContent = valor;
-        }
-
-        function mostrarPromedio(texto, valor) {
-            document.querySelector(`#${texto}-edad`).textContent = valor;
-        }
-
-
-        event.preventDefault();
-
+    function mostrarMayor(texto, valor) {
+        document.querySelector(`#${texto}-edad`).textContent = valor;
     }
-    
 
+    function mostrarMenor(texto, valor) {
+        document.querySelector(`#${texto}-edad`).textContent = valor;
+    }
+
+    function mostrarPromedio(texto, valor) {
+        document.querySelector(`#${texto}-edad`).textContent = valor;
+    }
+
+
+    event.preventDefault();
 
 }
+
 
 $botonLimpiar.onclick = resetear;
 
@@ -95,6 +84,8 @@ function resetear() {
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
+    limpiarErrores();
+
 }
 
 function resetearResultados() {
@@ -137,6 +128,14 @@ function limpiarResultados() {
 
 }
 
+function limpiarErrores (){
+    const mensajesError = document.querySelectorAll('li');
+
+    for (let i = 0; i < mensajesError.length; i++) {
+        mensajesError[i].remove();
+    }
+}
+
 
 function validarIngresoIntegrantes(valoresIngresados) {
 
@@ -146,9 +145,9 @@ function validarIngresoIntegrantes(valoresIngresados) {
     return "";
 }
 
-function validarIngresoEdades(edades) { 
+function validarIngresoEdades(edades) {
 
-    for (let i = 0; i < edades.length; i++){    
+    for (let i = 0; i < edades.length; i++) {
         if (Number(edades[i].value) <= 0) {
             return "La edad ingresada no es correcta."
         }
@@ -156,5 +155,16 @@ function validarIngresoEdades(edades) {
     return "";
 }
 
+
+// function manejarErrores(errores) {
+//     if (errores.cantInt != '') {
+
+//         Object.keys(errores).forEach(function (key) {
+//             console.log(errores[key]);
+//             //cuentaErrores = cuentaErrores + errors[key].length;
+//         });
+
+//     }
+// }
 
 $form.onsubmit = validarFormulario();

@@ -2,17 +2,21 @@
     display: none;
 }
 
-#calculador-edades{
+.error {
+    border: 2px solid red;
+}
+
+
+#calculador-edades {
     font-style: italic;
     font-weight: bolder;
     background-color: cadetblue;
 }
 
-.edad{
+.edad {
     background-color: brown;
 }
 
-.error{
-    border: 2px solid red;
-}
+
+
 
