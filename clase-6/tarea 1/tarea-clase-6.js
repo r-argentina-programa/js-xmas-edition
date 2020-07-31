@@ -14,16 +14,17 @@ const $botonSiguiente = $form.querySelector('#siguiente-paso');
 const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 
-function validarFormulario() {
+//DECLARAR EL OBJ ERRORES DE MANERA GLOBAL, DESPUÉS IR PROBANDO DÓNDE QUEDA MEJOR
 
-    $botonSiguiente.onclick = function () {
+$botonSiguiente.onclick = function () {
+
 
         const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
 
         if (validarIngresoIntegrantes(cantidadIntegrantes) != '') {
 
-            
-            document.querySelector('#cantidad-integrantes').className = 'error';
+
+            $form.querySelector('#cantidad-integrantes').className = 'error';
 
             //------------Agrega mensaje error a la interfaz de usuario------------
             const $listaErrores = document.querySelector('ul');
@@ -41,7 +42,7 @@ function validarFormulario() {
         }
 
     }
-}
+
 
 //EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
 
@@ -128,11 +129,12 @@ function limpiarResultados() {
 
 }
 
-function limpiarErrores (){
+function limpiarErrores() {
     const mensajesError = document.querySelectorAll('li');
 
     for (let i = 0; i < mensajesError.length; i++) {
         mensajesError[i].remove();
+        document.querySelector('#cantidad-integrantes').className = '';
     }
 }
 
@@ -167,4 +169,3 @@ function validarIngresoEdades(edades) {
 //     }
 // }
 
-$form.onsubmit = validarFormulario();
