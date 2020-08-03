@@ -14,49 +14,81 @@ const $botonSiguiente = $form.querySelector('#siguiente-paso');
 const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 
-//DECLARAR EL OBJ ERRORES DE MANERA GLOBAL, DESPUÉS IR PROBANDO DÓNDE QUEDA MEJOR
+const errores = new Object() //{Objeto para almacenar mensajes de error
 
 $botonSiguiente.onclick = function () {
 
 
-        const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
+    const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
 
-        if (validarIngresoIntegrantes(cantidadIntegrantes) != '') {
+    if (validarIngresoIntegrantes(cantidadIntegrantes) != '') {
 
 
-            $form.querySelector('#cantidad-integrantes').className = 'error';
+        $form.querySelector('#cantidad-integrantes').className = 'error';
 
-            //------------Agrega mensaje error a la interfaz de usuario------------
-            const $listaErrores = document.querySelector('ul');
-            const $errorIntegrante = document.createElement('li');
-            const mensajeError = document.createTextNode(validarIngresoIntegrantes(cantidadIntegrantes));
+        errores.errorCantInt = validarIngresoIntegrantes(cantidadIntegrantes);
 
-            $errorIntegrante.appendChild(mensajeError);
-            $listaErrores.appendChild($errorIntegrante);
-            //---------------------------------------------------------------------
+        //------------Agrega mensaje error a la interfaz de usuario------------
+        const $listaErrores = document.querySelector('ul');
+        const $errorIntegrante = document.createElement('li');
+        $errorIntegrante.innerText = (validarIngresoIntegrantes(cantidadIntegrantes));
 
-        } else {
-            resetear();
-            mostrarBotonCalcular();
-            crearUsuario(cantidadIntegrantes);
-        }
+        $listaErrores.appendChild($errorIntegrante);
+        //---------------------------------------------------------------------
 
+    } else {
+        resetear();
+        mostrarBotonCalcular();
+        crearUsuario(cantidadIntegrantes);
     }
+
+}
 
 
 //EDADES MÁXIMA, MÍNIMA Y PROMEDIO GENERAL
 
-$botonCalcular.onclick = function (errores) {
+$botonCalcular.onclick = function () {
 
-    const edades = document.querySelectorAll(".edades"); //Nodelist        
+    const edades = document.querySelectorAll(".edades"); //Nodelist  
 
-    errores.edad = validarIngresoEdades(edades);
-    console.log(errores);
+    // Si no hay errores, hacer cálculos correspondientes 
 
-    mostrarMayor("mayor", calcularMayorEdad(edades));
-    mostrarMenor("menor", calcularMenorEdad(edades));
-    mostrarPromedio("promedio", calcularPromEdad(edades));
-    mostrarResultados();
+    if (!manejarErroresIngresoEdad()) {
+
+        mostrarMayor("mayor", calcularMayorEdad(edades));
+        mostrarMenor("menor", calcularMenorEdad(edades));
+        mostrarPromedio("promedio", calcularPromEdad(edades));
+        mostrarResultados();
+
+    }
+
+
+    function manejarErroresIngresoEdad() { //Ésta función chequea que cada edad ingresada por el usuario, sea válida.
+        //Caso contrario, muestra con un borde rojo dónde está  
+        //y cuál fue el error cometido 
+
+        let mensajeError = true;
+
+        edades.forEach(function (index) {
+
+            if (Number(index.value) < 0) {
+
+                index.className = 'error';
+
+            }
+
+        });
+
+        const $listaErrores = document.querySelector('ul');
+        const $errorEdad = document.createElement('li');
+        $errorEdad.innerText = validarIngresoEdades(edades);
+
+        $listaErrores.appendChild($errorEdad);
+
+        errores.errorIngresoEdad = validarIngresoEdades(edades);
+
+        return mensajeError;
+    }
 
 
     function mostrarMayor(texto, valor) {
@@ -157,15 +189,4 @@ function validarIngresoEdades(edades) {
     return "";
 }
 
-
-// function manejarErrores(errores) {
-//     if (errores.cantInt != '') {
-
-//         Object.keys(errores).forEach(function (key) {
-//             console.log(errores[key]);
-//             //cuentaErrores = cuentaErrores + errors[key].length;
-//         });
-
-//     }
-// }
 

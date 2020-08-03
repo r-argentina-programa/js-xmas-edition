@@ -1,3 +1,4 @@
+
 function crearUsuario(cantidadIntegrantes) {
     
     
@@ -11,10 +12,10 @@ function crearUsuario(cantidadIntegrantes) {
         $label.appendChild(textoLabel);
 
         const $input = document.createElement('input'); //Creo el tag input
+
         $input.type = "number";
-        // $input.min = "1";
-        // $input.max = "100";
         $input.className = "edades";
+        $input.name = "edad";
 
         $integrantes.appendChild($label);
         $integrantes.appendChild($input); //Al elemento "$integrantes" le agrego el elemento hijo "$input"  
@@ -27,11 +28,15 @@ function crearUsuario(cantidadIntegrantes) {
 
 function calcularMayorEdad(edades) {
     let maxEdad = 0;
+    
     for (let i = 0; i < edades.length; i++) {
+        
         if (edades[i].value > maxEdad) { //Mayor Edades
             maxEdad = Number(edades[i].value);
         }
+    
     }
+    
     return maxEdad;
 }
 
