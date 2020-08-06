@@ -13,33 +13,28 @@ const $form = document.querySelector('#calculador-edades');
 const $botonSiguiente = $form.querySelector('#siguiente-paso');
 const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
+const $cantidadIntegrantes = $form.querySelector('#cantidad-integrantes');
 
-const errores = new Object() //{Objeto para almacenar mensajes de error
+
+const errores = {}
 
 $botonSiguiente.onclick = function () {
 
 
-    const cantidadIntegrantes = Number(document.querySelector('#cantidad-integrantes').value);
+    const cantidadIntegrantes = $cantidadIntegrantes.value;
 
-    if (validarIngresoIntegrantes(cantidadIntegrantes) != '') {
+    if (validarIngresoIntegrantes(cantidadIntegrantes) !== '') {
 
+        $cantidadIntegrantes.className = 'error';
 
-        $form.querySelector('#cantidad-integrantes').className = 'error';
+        errores.errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
 
-        errores.errorCantInt = validarIngresoIntegrantes(cantidadIntegrantes);
-
-        //------------Agrega mensaje error a la interfaz de usuario------------
-        const $listaErrores = document.querySelector('ul');
-        const $errorIntegrante = document.createElement('li');
-        $errorIntegrante.innerText = (validarIngresoIntegrantes(cantidadIntegrantes));
-
-        $listaErrores.appendChild($errorIntegrante);
-        //---------------------------------------------------------------------
+        mostrarError(cantidadIntegrantes);
 
     } else {
         resetear();
         mostrarBotonCalcular();
-        crearUsuario(cantidadIntegrantes);
+        crearUsuarios(cantidadIntegrantes);
     }
 
 }
@@ -49,77 +44,63 @@ $botonSiguiente.onclick = function () {
 
 $botonCalcular.onclick = function () {
 
-    const edades = document.querySelectorAll(".edades"); //Nodelist  
+    const edades = document.querySelectorAll(".edades");
+    const mensajeError = true;
 
-    // Si no hay errores, hacer cálculos correspondientes 
+    const ingresoIntegrantesValido = manejarErroresIngresoEdad(edades,mensajeError);
 
-    if (!manejarErroresIngresoEdad()) {
-
-        mostrarMayor("mayor", calcularMayorEdad(edades));
-        mostrarMenor("menor", calcularMenorEdad(edades));
-        mostrarPromedio("promedio", calcularPromEdad(edades));
-        mostrarResultados();
-
+    if (!!ingresoIntegrantesValido) {
+        mostrarResultados(edades);
     }
-
-
-    function manejarErroresIngresoEdad() { //Ésta función chequea que cada edad ingresada por el usuario, sea válida.
-        //Caso contrario, muestra con un borde rojo dónde está  
-        //y cuál fue el error cometido 
-
-        let mensajeError = true;
-
-        edades.forEach(function (index) {
-
-            if (Number(index.value) < 0) {
-
-                index.className = 'error';
-
-            }
-
-        });
-
-        const $listaErrores = document.querySelector('ul');
-        const $errorEdad = document.createElement('li');
-        $errorEdad.innerText = validarIngresoEdades(edades);
-
-        $listaErrores.appendChild($errorEdad);
-
-        errores.errorIngresoEdad = validarIngresoEdades(edades);
-
-        return mensajeError;
-    }
-
-
-    function mostrarMayor(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
-    }
-
-    function mostrarMenor(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
-    }
-
-    function mostrarPromedio(texto, valor) {
-        document.querySelector(`#${texto}-edad`).textContent = valor;
-    }
-
-
+    
     event.preventDefault();
 
+}
+
+function manejarErroresIngresoEdad(edades,mensajeError) { //Ésta función chequea que cada edad ingresada por el usuario, sea válida.
+    
+    edades.forEach(function (input) {
+
+        if (Number(input.value) < 0) {
+
+            input.className = 'error';
+
+        }
+
+    });
+
+    const $listaErrores = document.querySelector('ul');
+    const $errorEdad = document.createElement('li');
+    $errorEdad.innerText = validarIngresoEdades(edades);
+
+    errores.errorIngresoEdad = validarIngresoEdades(edades);
+
+    return mensajeError;
 }
 
 
 $botonLimpiar.onclick = resetear;
 
-function resetear() {
+function resetear($cantidadIntegrantes) {
     resetearResultados();
     limpiarLabels();
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
-    limpiarErrores();
+    limpiarErrores($cantidadIntegrantes);
 
 }
+
+function mostrarResultados(edades) {
+
+    document.querySelector('#analisis').className = '';
+
+    mostrarMayor("mayor", calcularMayorEdad(edades));
+    mostrarMenor("menor", calcularMenorEdad(edades));
+    mostrarPromedio("promedio", calcularPromEdad(edades));
+
+}
+
 
 function resetearResultados() {
     const integrantes = document.querySelectorAll('.integrante');
@@ -152,8 +133,16 @@ function ocultarBotonCalcular() {
     document.querySelector('#calcular').className = "oculto";
 }
 
-function mostrarResultados() {
-    document.querySelector('#analisis').className = '';
+function mostrarMayor(texto, valor) {
+    document.querySelector(`#${texto}-edad`).textContent = valor;
+}
+
+function mostrarMenor(texto, valor) {
+    document.querySelector(`#${texto}-edad`).textContent = valor;
+}
+
+function mostrarPromedio(texto, valor) {
+    document.querySelector(`#${texto}-edad`).textContent = valor;
 }
 
 function limpiarResultados() {
@@ -161,15 +150,27 @@ function limpiarResultados() {
 
 }
 
-function limpiarErrores() {
-    const mensajesError = document.querySelectorAll('li');
+function limpiarErrores($cantidadIntegrantes) {
 
-    for (let i = 0; i < mensajesError.length; i++) {
-        mensajesError[i].remove();
-        document.querySelector('#cantidad-integrantes').className = '';
+    const $mensajesError = document.querySelectorAll('li');
+
+    console.log ($cantidadIntegrantes.className)//Esto devuelve undefined. ¿Por qué?
+
+    for (let i = 0; i < $mensajesError.length; i++) {
+        $mensajesError[i].remove();
+        $cantidadIntegrantes.className = '';
     }
 }
 
+function mostrarError(cantidadIntegrantes) {
+
+    const $listaErrores = document.querySelector('ul');
+    const $errorIntegrante = document.createElement('li');
+    $errorIntegrante.innerText = validarIngresoIntegrantes(cantidadIntegrantes);
+    
+    $listaErrores.appendChild($errorIntegrante);
+
+}
 
 function validarIngresoIntegrantes(valoresIngresados) {
 
@@ -188,5 +189,3 @@ function validarIngresoEdades(edades) {
     }
     return "";
 }
-
-

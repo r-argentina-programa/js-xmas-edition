@@ -1,5 +1,5 @@
 
-function crearUsuario(cantidadIntegrantes) {
+function crearUsuarios(cantidadIntegrantes) {
     
     
     for (let i = 0; i < cantidadIntegrantes; i++) {
