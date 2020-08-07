@@ -25,6 +25,8 @@ $botonSiguiente.onclick = function () {
 
     if (validarIngresoIntegrantes(cantidadIntegrantes) !== '') {
 
+        limpiarErrores($cantidadIntegrantes);
+
         $cantidadIntegrantes.className = 'error';
 
         errores.errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
@@ -57,6 +59,10 @@ $botonCalcular.onclick = function () {
 
 }
 
+
+
+
+
 function manejarErroresIngresoEdad(edades,mensajeError) { //Ésta función chequea que cada edad ingresada por el usuario, sea válida.
     
     edades.forEach(function (input) {
@@ -81,13 +87,14 @@ function manejarErroresIngresoEdad(edades,mensajeError) { //Ésta función chequ
 
 $botonLimpiar.onclick = resetear;
 
-function resetear($cantidadIntegrantes) {
+function resetear () {
+    limpiarErrores($cantidadIntegrantes);
     resetearResultados();
     limpiarLabels();
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
-    limpiarErrores($cantidadIntegrantes);
+    
 
 }
 
@@ -153,8 +160,6 @@ function limpiarResultados() {
 function limpiarErrores($cantidadIntegrantes) {
 
     const $mensajesError = document.querySelectorAll('li');
-
-    console.log ($cantidadIntegrantes.className)//Esto devuelve undefined. ¿Por qué?
 
     for (let i = 0; i < $mensajesError.length; i++) {
         $mensajesError[i].remove();
