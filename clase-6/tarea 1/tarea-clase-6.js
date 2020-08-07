@@ -102,9 +102,9 @@ function mostrarResultados(edades) {
 
     document.querySelector('#analisis').className = '';
 
-    mostrarMayor("mayor", calcularMayorEdad(edades));
-    mostrarMenor("menor", calcularMenorEdad(edades));
-    mostrarPromedio("promedio", calcularPromEdad(edades));
+    mostrarMayor(calcularMayorEdad(edades));
+    mostrarMenor(calcularMenorEdad(edades));
+    mostrarPromedio(calcularPromEdad(edades));
 
 }
 
@@ -140,16 +140,16 @@ function ocultarBotonCalcular() {
     document.querySelector('#calcular').className = "oculto";
 }
 
-function mostrarMayor(texto, valor) {
-    document.querySelector(`#${texto}-edad`).textContent = valor;
+function mostrarMayor(valor) {
+    document.querySelector('#mayor-edad').textContent = valor;
 }
 
-function mostrarMenor(texto, valor) {
-    document.querySelector(`#${texto}-edad`).textContent = valor;
+function mostrarMenor(valor) {
+    document.querySelector('#menor-edad').textContent = valor;
 }
 
-function mostrarPromedio(texto, valor) {
-    document.querySelector(`#${texto}-edad`).textContent = valor;
+function mostrarPromedio(valor) {
+    document.querySelector('#promedio-edad').textContent = valor;
 }
 
 function limpiarResultados() {
