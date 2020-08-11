@@ -94,7 +94,7 @@ function manejarErrores(errores) {
 
     const keys = Object.keys(errores);
     const $errores = document.querySelector('#errores');
-    //$errores.innerText = '';
+    $errores.innerText = '';
     
     let cantidadErrores = 0;
 

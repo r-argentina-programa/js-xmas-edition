@@ -15,28 +15,25 @@ const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 const $cantidadIntegrantes = $form.querySelector('#cantidad-integrantes');
 
-
 const errores = {}
+
+
 
 $botonSiguiente.onclick = function () {
 
+    const cantidadIntegrantes = Number($cantidadIntegrantes.value);
 
-    const cantidadIntegrantes = $cantidadIntegrantes.value;
+    errores.errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
 
-    if (validarIngresoIntegrantes(cantidadIntegrantes) !== '') {
+    if (cantidadIntegrantes > 0) {
 
-        limpiarErrores($cantidadIntegrantes);
-
-        $cantidadIntegrantes.className = 'error';
-
-        errores.errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
-
-        mostrarError(cantidadIntegrantes);
+        ingresoEdadesIntegrantes(cantidadIntegrantes);
 
     } else {
-        resetear();
-        mostrarBotonCalcular();
-        crearUsuarios(cantidadIntegrantes);
+
+        $cantidadIntegrantes.className = 'error';
+        manejarErrores(errores);
+
     }
 
 }
@@ -46,55 +43,54 @@ $botonSiguiente.onclick = function () {
 
 $botonCalcular.onclick = function () {
 
-    const edades = document.querySelectorAll(".edades");
-    const mensajeError = true;
+    const edades = document.querySelectorAll(".edades")
 
-    const ingresoIntegrantesValido = manejarErroresIngresoEdad(edades,mensajeError);
+    errores.errorEdad = validarIngresoEdades(edades);
 
-    if (!!ingresoIntegrantesValido) {
+    if (errores.errorEdad !== '') {
+        manejarErrores(errores);
+    } else {
         mostrarResultados(edades);
     }
-    
+
     event.preventDefault();
 
 }
 
 
 
+function manejarErrores(errores) {
 
+    Object.keys(errores).forEach(function (key) {
 
-function manejarErroresIngresoEdad(edades,mensajeError) { //Ésta función chequea que cada edad ingresada por el usuario, sea válida.
-    
-    edades.forEach(function (input) {
+        $listaError = $form.querySelector('ul');
+        
+        errores.$mensajeError = document.createElement('li');
+        errores.$mensajeError.innerText = errores[key];
 
-        if (Number(input.value) < 0) {
-
-            input.className = 'error';
-
-        }
+        $listaError.appendChild(errores.$mensajeError);
 
     });
 
-    const $listaErrores = document.querySelector('ul');
-    const $errorEdad = document.createElement('li');
-    $errorEdad.innerText = validarIngresoEdades(edades);
-
-    errores.errorIngresoEdad = validarIngresoEdades(edades);
-
-    return mensajeError;
 }
 
+function ingresoEdadesIntegrantes(cantidadIntegrantes) {
+
+    mostrarBotonCalcular();
+    crearUsuarios(cantidadIntegrantes);
+
+}
 
 $botonLimpiar.onclick = resetear;
 
-function resetear () {
-    limpiarErrores($cantidadIntegrantes);
+function resetear() {
+
+    limpiarErrores(errores, $cantidadIntegrantes);
     resetearResultados();
     limpiarLabels();
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
-    
 
 }
 
@@ -157,25 +153,15 @@ function limpiarResultados() {
 
 }
 
-function limpiarErrores($cantidadIntegrantes) {
+function limpiarErrores(errores, $ingresoInvalido) {
 
-    const $mensajesError = document.querySelectorAll('li');
-
-    for (let i = 0; i < $mensajesError.length; i++) {
-        $mensajesError[i].remove();
-        $cantidadIntegrantes.className = '';
+    if (errores.errorCantidadIntegrantes !== '') {
+        errores.$mensajeError.remove();
+        $ingresoInvalido.className = '';
     }
-}
-
-function mostrarError(cantidadIntegrantes) {
-
-    const $listaErrores = document.querySelector('ul');
-    const $errorIntegrante = document.createElement('li');
-    $errorIntegrante.innerText = validarIngresoIntegrantes(cantidadIntegrantes);
-    
-    $listaErrores.appendChild($errorIntegrante);
 
 }
+
 
 function validarIngresoIntegrantes(valoresIngresados) {
 
