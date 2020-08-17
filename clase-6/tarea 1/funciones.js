@@ -14,6 +14,7 @@ function crearUsuarios(cantidadIntegrantes) {
         const $input = document.createElement('input'); //Creo el tag input
 
         $input.type = "number";
+        $input.id = "edad";
         $input.className = "edades";
         $input.name = "edad";
 
@@ -31,7 +32,7 @@ function calcularMayorEdad(edades) {
     
     for (let i = 0; i < edades.length; i++) {
         
-        if (edades[i].value > maxEdad) { //Mayor Edades
+        if (edades[i].value > maxEdad) { 
             maxEdad = Number(edades[i].value);
         }
     

@@ -15,26 +15,53 @@ const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 const $cantidadIntegrantes = $form.querySelector('#cantidad-integrantes');
 
-const errores = {}
+const errores = {};
 
+//let esExito;
+
+let cantidadErrores = 0;
 
 
 $botonSiguiente.onclick = function () {
 
     const cantidadIntegrantes = Number($cantidadIntegrantes.value);
 
-    errores.errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
+    const errorCantidadIntegrantes = validarIngresoIntegrantes(cantidadIntegrantes);
 
-    if (cantidadIntegrantes > 0) {
 
+    if (errorCantidadIntegrantes === '') {
+
+        limpiarMensajeError();
         ingresoEdadesIntegrantes(cantidadIntegrantes);
-
-    } else {
-
-        $cantidadIntegrantes.className = 'error';
-        manejarErrores(errores);
-
+        
+    } else if (cantidadErrores === 0) {
+        
+        $form["cantidad-integrantes"].className = 'error';
+        mostrarMensajeError(errorCantidadIntegrantes);
+        cantidadErrores++;
+               
     }
+    
+
+}
+
+function mostrarMensajeError (errorCantidadIntegrantes) {
+    
+    const $listaErrores = document.querySelector('#lista-errores');
+    const $errorCantidadIntegrantes = document.createElement('li');
+
+    $errorCantidadIntegrantes.innerText = errorCantidadIntegrantes;
+
+    $listaErrores.appendChild($errorCantidadIntegrantes);
+    
+}
+
+
+function limpiarMensajeError () {
+   
+    $form["cantidad-integrantes"].className = "";
+    const $mensajeError = document.querySelector('li');
+    $mensajeError.remove();
 
 }
 
@@ -45,13 +72,19 @@ $botonCalcular.onclick = function () {
 
     const edades = document.querySelectorAll(".edades")
 
-    errores.errorEdad = validarIngresoEdades(edades);
+    for (let i = 0; i < edades.length; i++) {
 
-    if (errores.errorEdad !== '') {
-        manejarErrores(errores);
-    } else {
-        mostrarResultados(edades);
+        const errorEdad = validarIngresoEdades(edades);
+
+        errores.edad = errorEdad;
+        errores["cantidad-integrantes"] = '';
     }
+
+    if (comprobarExistenciaErrores(esExito)) {
+        resetear();
+        mostrarResultados(edades);
+        mostrarBotonLimpiar();
+    } 
 
     event.preventDefault();
 
@@ -61,17 +94,47 @@ $botonCalcular.onclick = function () {
 
 function manejarErrores(errores) {
 
-    Object.keys(errores).forEach(function (key) {
 
-        $listaError = $form.querySelector('ul');
-        
-        errores.$mensajeError = document.createElement('li');
-        errores.$mensajeError.innerText = errores[key];
+    const keys = Object.keys(errores);
+    const $errores = document.querySelector('#lista-errores');
+    $errores.innerText = '';
 
-        $listaError.appendChild(errores.$mensajeError);
+
+    let hayErrores = true;
+
+    keys.forEach(function (key) {
+
+        const error = errores[key];
+
+
+
+        if (error) {
+
+            hayErrores = false;
+            $form[key].className = 'error';
+
+            const $error = document.createElement('li');
+            $error.innerText = error;
+
+            $errores.appendChild($error);
+
+        } else {
+
+            $form[key].className = '';
+
+        }
 
     });
 
+    return hayErrores;
+
+}
+
+function comprobarExistenciaErrores(esExito) {
+
+    esExito = manejarErrores(errores) === true;
+
+    return esExito;
 }
 
 function ingresoEdadesIntegrantes(cantidadIntegrantes) {
@@ -85,12 +148,12 @@ $botonLimpiar.onclick = resetear;
 
 function resetear() {
 
-    limpiarErrores(errores, $cantidadIntegrantes);
     resetearResultados();
     limpiarLabels();
     limpiarInputs();
     ocultarBotonCalcular();
     limpiarResultados();
+    ocultarBotonLimpiar();
 
 }
 
@@ -153,14 +216,24 @@ function limpiarResultados() {
 
 }
 
-function limpiarErrores(errores, $ingresoInvalido) {
-
-    if (errores.errorCantidadIntegrantes !== '') {
-        errores.$mensajeError.remove();
-        $ingresoInvalido.className = '';
-    }
-
+function mostrarBotonLimpiar() {
+    document.querySelector('#resetear').className = '';
 }
+
+function ocultarBotonLimpiar() {
+    document.querySelector('#resetear').className = 'oculto';
+}
+
+
+
+// function limpiarErrores(errores, $ingresoInvalido) {
+
+//     if (errores.$mensajeError !== '') {
+//         errores.$mensajeError.remove();
+//         $ingresoInvalido.className = '';
+//     }
+
+// }
 
 
 function validarIngresoIntegrantes(valoresIngresados) {
