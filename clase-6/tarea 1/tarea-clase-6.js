@@ -15,7 +15,9 @@ const $botonCalcular = $form.querySelector('#calcular');
 const $botonLimpiar = $form.querySelector('#resetear');
 const $cantidadIntegrantes = $form.querySelector('#cantidad-integrantes');
 
-const errores = {};
+const errores = {
+    edades: [],
+};
 
 //let esExito;
 
@@ -61,7 +63,10 @@ function limpiarMensajeError () {
    
     $form["cantidad-integrantes"].className = "";
     const $mensajeError = document.querySelector('li');
-    $mensajeError.remove();
+    
+    if ($mensajeError !== null) {
+        $mensajeError.remove();
+    }
 
 }
 
@@ -70,21 +75,27 @@ function limpiarMensajeError () {
 
 $botonCalcular.onclick = function () {
 
-    const edades = document.querySelectorAll(".edades")
+     const edades = document.querySelectorAll(".edades")
 
-    for (let i = 0; i < edades.length; i++) {
+     
 
-        const errorEdad = validarIngresoEdades(edades);
+        errores.edades.push(validarIngresoEdades(edades));
+        
+        
+    
+        manejarErrores(errores);
+                  
+         console.log (errores.edad)
+           // (Number(edades[i].value))
+    //      
+    //     errores["cantidad-integrantes"] = '';
+     
 
-        errores.edad = errorEdad;
-        errores["cantidad-integrantes"] = '';
-    }
-
-    if (comprobarExistenciaErrores(esExito)) {
-        resetear();
-        mostrarResultados(edades);
-        mostrarBotonLimpiar();
-    } 
+    // if (comprobarExistenciaErrores(esExito)) {
+    //     resetear();
+    //     mostrarResultados(edades);
+    //     mostrarBotonLimpiar();
+    // } 
 
     event.preventDefault();
 
@@ -97,20 +108,14 @@ function manejarErrores(errores) {
 
     const keys = Object.keys(errores);
     const $errores = document.querySelector('#lista-errores');
-    $errores.innerText = '';
 
-
-    let hayErrores = true;
 
     keys.forEach(function (key) {
 
-        const error = errores[key];
-
-
+    const error = errores[key];
 
         if (error) {
 
-            hayErrores = false;
             $form[key].className = 'error';
 
             const $error = document.createElement('li');
@@ -126,7 +131,6 @@ function manejarErrores(errores) {
 
     });
 
-    return hayErrores;
 
 }
 

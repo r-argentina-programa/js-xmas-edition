@@ -16,7 +16,7 @@ function crearUsuarios(cantidadIntegrantes) {
         $input.type = "number";
         $input.id = "edad";
         $input.className = "edades";
-        $input.name = "edad";
+        $input.name = "edades";
 
         $integrantes.appendChild($label);
         $integrantes.appendChild($input); //Al elemento "$integrantes" le agrego el elemento hijo "$input"  
