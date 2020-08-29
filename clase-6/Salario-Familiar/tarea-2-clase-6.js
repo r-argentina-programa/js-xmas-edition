@@ -16,6 +16,8 @@ Punto bonus:
 
 let cantidadMiembros = 0;
 
+
+
 $botonAgregarMiembro = document.querySelector('#agregar');
 $botonCalcular = document.querySelector('#calcular');
 $botonQuitarMiembro = document.querySelector('#quitar');
@@ -30,10 +32,9 @@ $botonCalcular.onclick = function(){
     
     event.preventDefault();
     
-    mostrarSalario("mayor",mayorSalarioAnual());
-    mostrarSalario("menor",menorSalarioAnual());
-    mostrarSalario("anual-promedio",salarioAnualPromedio(cantidadMiembros));
-    mostrarSalario("mensual-promedio",salarioMensualPromedio());
+    validarSalario();
+
+   
     mostrarResultados();
     
 }
@@ -54,6 +55,7 @@ function agregarMiembro(){
 }
 
 function crearEtiqueta(tag,texto,tipo){
+    
     const $div = document.createElement('div');
     const $contenedorMiembros = document.querySelector('#agrega-miembros');
     
@@ -65,6 +67,7 @@ function crearEtiqueta(tag,texto,tipo){
         $etiqueta.type = "number";
         $etiqueta.className = "miembros";
         $etiqueta.placeholder = "Ejemplo $250000";
+
     } else {
     //Crea el label con lo que debe rellenar el usuario        
         const $texto = document.createTextNode(texto);
@@ -93,7 +96,13 @@ function borrarEtiqueta(tag){
 }
 
 function mostrarResultados(){
+    
     document.querySelector('#calculos').className = "";
+    
+    mostrarSalario("mayor",mayorSalarioAnual());
+    mostrarSalario("menor",menorSalarioAnual());
+    mostrarSalario("anual-promedio",salarioAnualPromedio(cantidadMiembros));
+    mostrarSalario("mensual-promedio",salarioMensualPromedio());
 }
 
 function ocultarResultados(){

@@ -47,3 +47,4 @@ function salarioMensualPromedio(){
 
   return salarioPromedioMensual;
 }
+
