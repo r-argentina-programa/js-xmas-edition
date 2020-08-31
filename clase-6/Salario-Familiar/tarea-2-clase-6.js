@@ -31,11 +31,11 @@ $botonAgregarMiembro.onclick = function(){
 $botonCalcular.onclick = function(){
     
     event.preventDefault();
-    
-    validarSalario();
 
-   
-    mostrarResultados();
+    const sueldos = document.querySelectorAll('.miembros');
+    
+    validarSalario(sueldos);
+    mostrarResultados(sueldos);
     
 }
 
@@ -95,14 +95,14 @@ function borrarEtiqueta(tag){
     
 }
 
-function mostrarResultados(){
-    
+function mostrarResultados(sueldos){
+
     document.querySelector('#calculos').className = "";
     
-    mostrarSalario("mayor",mayorSalarioAnual());
-    mostrarSalario("menor",menorSalarioAnual());
-    mostrarSalario("anual-promedio",salarioAnualPromedio(cantidadMiembros));
-    mostrarSalario("mensual-promedio",salarioMensualPromedio());
+    mostrarSalario("mayor",mayorSalarioAnual(sueldos));
+    mostrarSalario("menor",menorSalarioAnual(sueldos));
+    mostrarSalario("anual-promedio",salarioAnualPromedio(cantidadMiembros,sueldos));
+    mostrarSalario("mensual-promedio",salarioMensualPromedio(sueldos));
 }
 
 function ocultarResultados(){

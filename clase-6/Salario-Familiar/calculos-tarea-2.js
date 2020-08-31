@@ -1,5 +1,5 @@
-function mayorSalarioAnual(){
-    const sueldos = document.querySelectorAll('.miembros');
+function mayorSalarioAnual(sueldos){
+    
     let maxSalario = 0;
   
     for(let i = 0; i < sueldos.length; i++){
@@ -11,8 +11,8 @@ function mayorSalarioAnual(){
     return maxSalario;
   }
 
-function menorSalarioAnual(){
-    const sueldos = document.querySelectorAll('.miembros');
+function menorSalarioAnual(sueldos){
+    
     let minSalario = 1000000;
 
     for(let i = 0; i < sueldos.length; i++){
@@ -24,8 +24,8 @@ function menorSalarioAnual(){
       return minSalario; 
   }
 
-function salarioAnualPromedio(cantidadMiembros){
-  const sueldos = document.querySelectorAll('.miembros');
+function salarioAnualPromedio(cantidadMiembros,sueldos){
+  
   let salarioPromedio = 0;
   let sumatoriaSalarios = 0;
 
@@ -39,11 +39,11 @@ function salarioAnualPromedio(cantidadMiembros){
   return salarioPromedio;
 }
 
-function salarioMensualPromedio(){
+function salarioMensualPromedio(sueldos){
   const mesesDelAnio = 12;
   let salarioPromedioMensual = 0;
   
-  salarioPromedioMensual = (salarioAnualPromedio(cantidadMiembros) / mesesDelAnio);
+  salarioPromedioMensual = (salarioAnualPromedio(cantidadMiembros,sueldos) / mesesDelAnio);
 
   return salarioPromedioMensual;
 }
