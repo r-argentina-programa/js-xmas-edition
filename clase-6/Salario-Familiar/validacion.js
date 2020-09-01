@@ -1,15 +1,15 @@
 function validarSalario(sueldos) {
-    
-    let salarioIngresado = 0;
+  const salariosIngresados = [];
 
-  sueldos.forEach(function (element) {
+  for (let i = 0; i < sueldos.length; i++) {
     
-    salarioIngresado = Number(element.value);
-    
-    if (salarioIngresado < 0) {
-      return "El número ingresado debe ser mayor a cero";
+    if (/[0-9]$/(sueldos[i].value).test) {
+      salariosIngresados.push("El número ingresado debe ser mayor a cero");
+    } else {
+      salariosIngresados.push("");
     }
 
-    return "";
-  });
+  }
+  
+  return salariosIngresados;
 }
