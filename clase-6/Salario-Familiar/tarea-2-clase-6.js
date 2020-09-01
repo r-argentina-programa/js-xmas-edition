@@ -33,11 +33,17 @@ $botonCalcular.onclick = function(){
     event.preventDefault();
 
     const sueldos = document.querySelectorAll('.miembros');
-    
-    validarSalario(sueldos);
+    const salariosIngresados = [];
+
+    obtenerSalarios(sueldos, salariosIngresados);
+
+    validarSalarios(sueldos);
     mostrarResultados(sueldos);
     
 }
+
+
+
 
 
 $botonQuitarMiembro.onclick = function(){
@@ -46,6 +52,12 @@ $botonQuitarMiembro.onclick = function(){
 
 $botonLimpiar.onclick = function(){
     resetear(cantidadMiembros);
+}
+
+function obtenerSalarios(sueldos, salariosIngresados) {
+    for (let i = 0; i < sueldos.length; i++) {
+        salariosIngresados.push(Number(sueldos[i].value));
+    }
 }
 
 function agregarMiembro(){

@@ -1,5 +1,5 @@
-function validarSalario(sueldos) {
-  const salariosIngresados = [];
+function validarSalarios(sueldos) {
+  
 
   for (let i = 0; i < sueldos.length; i++) {
     
