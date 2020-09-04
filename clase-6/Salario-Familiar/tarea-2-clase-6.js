@@ -36,8 +36,9 @@ $botonCalcular.onclick = function(){
     const salariosIngresados = [];
 
     obtenerSalarios(sueldos, salariosIngresados);
+    validarSalarios(salariosIngresados);
+    
 
-    validarSalarios(sueldos);
     mostrarResultados(sueldos);
     
 }

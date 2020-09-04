@@ -1,15 +1,18 @@
-function validarSalarios(sueldos) {
-  
+function validarSalarios(salariosIngresados) {
 
-  for (let i = 0; i < sueldos.length; i++) {
+  const errores = {};
+
+  for (let i = 0; i < salariosIngresados.length; i++) {
     
-    if (/[0-9]$/(sueldos[i].value).test) {
-      salariosIngresados.push("El número ingresado debe ser mayor a cero");
-    } else {
-      salariosIngresados.push("");
+    if (salariosIngresados[i] <= 0 && errores.ingresoIncorrecto === undefined) {
+      errores.ingresoIncorrecto = "El número ingresado debe ser mayor a cero";
+    }else if (salariosIngresados[i] > 0){
+      errores.ingresoCorrecto = "";
     }
-
-  }
   
-  return salariosIngresados;
+    return errores;
+    
+  }
+
 }
+//Necesito guardar los mensajes para cada valor ingresado en alguna estructura de datos.
