@@ -53,3 +53,7 @@ body {
     background-color: orangered;
 
 }
+
+.error {
+    border: 2px solid red;
+}

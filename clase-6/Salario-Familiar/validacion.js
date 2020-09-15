@@ -1,18 +1,13 @@
 function validarSalarios(salariosIngresados) {
 
-  const errores = {};
+  let i = 0;
 
-  for (let i = 0; i < salariosIngresados.length; i++) {
-    
-    if (salariosIngresados[i] <= 0 && errores.ingresoIncorrecto === undefined) {
-      errores.ingresoIncorrecto = "El número ingresado debe ser mayor a cero";
-    }else if (salariosIngresados[i] > 0){
-      errores.ingresoCorrecto = "";
+  while (i < salariosIngresados.length) {
+    if (salariosIngresados[i] <= 0) {
+      return "El número ingresado debe ser mayor a cero";
     }
-  
-    return errores;
-    
+    i++;
   }
 
+  return "";
 }
-//Necesito guardar los mensajes para cada valor ingresado en alguna estructura de datos.
