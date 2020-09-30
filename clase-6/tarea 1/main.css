@@ -1,0 +1,22 @@
+.oculto {
+    display: none;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+
+#calculador-edades {
+    font-style: italic;
+    font-weight: bolder;
+    background-color: cadetblue;
+}
+
+.edad {
+    background-color: brown;
+}
+
+
+
+
