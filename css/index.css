@@ -105,17 +105,14 @@ button:hover {
     .on-success h1 {
         font-size: 30px;
     }
-
     form {
         font-size: 1em;
     }
-
     input[type=text],
     textarea {
         width: 50%;
     }
 }
-
 
 #exito {
     margin-top: 30px;
@@ -127,7 +124,6 @@ button:hover {
     font-size: 30px;
 }
 
-
-.oculto {
+.hidden {
     display: none;
 }

@@ -18,22 +18,41 @@ function validateName(userName) {
         return 'Este campo solo debe contener caracteres'
     }
 
-
-
     return ''
 }
 
-function isValidateContainigOnlyLetters(string) {
+function isValidateContainigOnlyLetters(text) {
 
-    return (/[0-9]/g.test(string))
+    return (/[0-9]/g.test(text))
 }
 
 
 
 
 function validateForm() {
-    const userName = document.form.name.value
-    console.log(validateName(userName))
+    const $form = document.querySelector('#letter-to-santa')
+    const errorName = validateName($form.name.value)
+
+    handleErrors([errorName])
+
 }
 
-validateForm()
+
+document.querySelector('#send-letter').onclick = function(event) {
+
+    validateForm()
+
+    event.preventDefault()
+}
+
+
+function handleErrors(errors) {
+    const errorName = errors[0]
+
+    if (errorName) {
+        console.log(errorName)
+    } else {
+        console.log('exito')
+    }
+
+}
