@@ -23,7 +23,7 @@ function validateName(userName) {
 
 function isValidateContainigOnlyLetters(text) {
 
-    return (/[0-9]/g.test(text))
+    return (/[0-9 ]/g.test(text))
 }
 
 
@@ -40,9 +40,10 @@ function validateForm() {
 
 document.querySelector('#send-letter').onclick = function(event) {
 
+    event.preventDefault()
+
     validateForm()
 
-    event.preventDefault()
 }
 
 
