@@ -58,19 +58,12 @@ function handleErrors(errors) {
     let countErrors = 0
 
 
+    Object.keys(errors).forEach((key) => {
+        console.log(errors[key])
+        countErrors += errors[key].length
+    })
 
-    if (errors.userName) {
-        console.log(errors.userName)
-        countErrors++
-    }
-    if (errors.userCity) {
-        console.log(errors.userCity)
-        countErrors++
-    }
-    if (errors.userGiftDescription) {
-        console.log(errors.userGiftDescription)
-        countErrors++
-    }
+
     if (countErrors === 0) {
         console.log('exito')
     }
