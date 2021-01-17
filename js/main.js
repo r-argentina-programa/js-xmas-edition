@@ -34,9 +34,9 @@ function validateForm() {
 
     const errors = {
 
-        errorUserName: validateName($form.name.value),
-        errorUserCity: validateCity($form.city.value),
-        errorUserGiftDescription: validateGiftDescription($form['gift-description'].value)
+        userName: validateName($form.name.value),
+        userCity: validateCity($form.city.value),
+        userGiftDescription: validateGiftDescription($form['gift-description'].value)
 
     }
 
@@ -55,22 +55,24 @@ document.querySelector('#send-letter').onclick = function(event) {
 
 
 function handleErrors(errors) {
-    const errorUserName = errors[0]
-    const errorUserCity = errors[1]
-    const errorUserGiftDescription = errors[2]
+    let countErrors = 0
 
 
 
-    if (errorUserName) {
-        console.log(errorUserName)
+    if (errors.userName) {
+        console.log(errors.userName)
+        countErrors++
     }
-    if (errorUserCity) {
-        console.log(errorUserCity)
+    if (errors.userCity) {
+        console.log(errors.userCity)
+        countErrors++
     }
-    if (errorUserGiftDescription) {
-        console.log(errorUserGiftDescription)
+    if (errors.userGiftDescription) {
+        console.log(errors.userGiftDescription)
+        countErrors++
+    }
+    if (countErrors === 0) {
+        console.log('exito')
     }
 
-
-    console.log('exito')
 }
