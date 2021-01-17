@@ -23,10 +23,15 @@ function validateGiftDescription(userGiftDescription) {
         return 'Este campo debe tener al menos 1 caracter'
     }
 
-    if (userGiftDescription.length >= 140) {
-        return 'Este campo tiene que tener al menos 140 caracteres'
+    if (userGiftDescription.length >= 100) {
+        return 'Este campo tiene que tener al menos 100 caracteres'
     }
-
+    if (isValidateContainigOnlyLettersAndNumbers(userGiftDescription)) {
+        return 'Este campo solo debe contener letras y numeros'
+    }
     return ''
+}
 
+function isValidateContainigOnlyLettersAndNumbers(text) {
+    return !(/\w+/g.test(text))
 }

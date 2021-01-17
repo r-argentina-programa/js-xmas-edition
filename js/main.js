@@ -31,9 +31,16 @@ function isValidateContainigOnlyLetters(text) {
 
 function validateForm() {
     const $form = document.querySelector('#letter-to-santa')
-    const errorName = validateName($form.name.value)
 
-    handleErrors([errorName])
+    const errors = {
+
+        errorUserName: validateName($form.name.value),
+        errorUserCity: validateCity($form.city.value),
+        errorUserGiftDescription: validateGiftDescription($form['gift-description'].value)
+
+    }
+
+    handleErrors(errors)
 
 }
 
@@ -48,12 +55,22 @@ document.querySelector('#send-letter').onclick = function(event) {
 
 
 function handleErrors(errors) {
-    const errorName = errors[0]
+    const errorUserName = errors[0]
+    const errorUserCity = errors[1]
+    const errorUserGiftDescription = errors[2]
 
-    if (errorName) {
-        console.log(errorName)
-    } else {
-        console.log('exito')
+
+
+    if (errorUserName) {
+        console.log(errorUserName)
+    }
+    if (errorUserCity) {
+        console.log(errorUserCity)
+    }
+    if (errorUserGiftDescription) {
+        console.log(errorUserGiftDescription)
     }
 
+
+    console.log('exito')
 }

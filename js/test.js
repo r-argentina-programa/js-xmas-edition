@@ -11,7 +11,7 @@ function testValidateName() {
     );
 
     console.assert(
-        validateName('6454') === 'Este campo solo debe contener caracteres',
+        validateName('6454 ') === 'Este campo solo debe contener caracteres',
         'No se valido que solo contenga letras'
     );
 }
@@ -27,7 +27,10 @@ function testValidateGiftDescription() {
         validateGiftDescription('') === 'Este campo debe tener al menos 1 caracter'
     )
     console.assert(
-        validateGiftDescription('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111') === 'Este campo tiene que tener al menos 140 caracteres', 'No se pudo colocar el comportamiento, es vacio'
+        validateGiftDescription('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111') === 'Este campo tiene que tener al menos 100 caracteres', 'No se pudo colocar el comportamiento, es vacio'
+    )
+    console.assert(
+        validateGiftDescription('&/(%&(') === 'Este campo solo debe contener letras y numeros', 'No se pudo validar que la descripcion del regalo tenga solo letras y numeros'
     )
 }
 
