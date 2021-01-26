@@ -7,15 +7,15 @@ function validateName(userName) {
 
 
     if (userName.length === 0) {
-        return 'Este campo debe tener al menos 1 caracter'
+        return 'El nombre debe tener al menos 1 caracter'
     }
 
     if (userName.length >= 50) {
-        return 'Este campo debe tener menos de 50 caracteres'
+        return 'El nombre debe tener menos de 50 caracteres'
     }
 
     if (isValidateContainigOnlyLetters(userName)) {
-        return 'Este campo solo debe contener caracteres'
+        return 'El nombre solo debe contener caracteres'
     }
 
     return ''
@@ -34,9 +34,9 @@ function validateForm() {
 
     const errors = {
 
-        userName: validateName($form.name.value),
-        userCity: validateCity($form.city.value),
-        userGiftDescription: validateGiftDescription($form['gift-description'].value)
+        name: validateName($form.name.value),
+        city: validateCity($form.city.value),
+        'gift-description': validateGiftDescription($form['gift-description'].value)
 
     }
 
@@ -59,13 +59,55 @@ function handleErrors(errors) {
 
 
     Object.keys(errors).forEach((key) => {
-        console.log(errors[key])
-        countErrors += errors[key].length
+
+        if (errors[key].length !== 0) {
+
+            showErrorStyles(key)
+            showErrorMessage(errors[key])
+            countErrors++
+
+        } else {
+
+            removeErrorStyle(key)
+        }
     })
 
 
     if (countErrors === 0) {
-        console.log('exito')
+        showSuccessMessage()
+        redirectToWhishList()
     }
+}
 
+function showErrorStyles(error) {
+
+    document.querySelector(`[name="${error}"]`).classList = 'error'
+    document.querySelector(`[name="${error}"]`).value = ''
+}
+
+function showErrorMessage(error) {
+
+
+    const $error = document.createElement('li')
+    $error.innerHTML = error
+
+    document.querySelector('#errors').appendChild($error)
+}
+
+function removeErrorStyle(error) {
+
+    document.querySelector(`[name="${error}"]`).classList = ''
+}
+
+function showSuccessMessage() {
+
+    document.querySelector('#letter-to-santa').className = 'hidden'
+    document.querySelector('#success').className = ''
+}
+
+function redirectToWhishList() {
+    const wishList = () => {
+        window.location.href = 'wishlist.html'
+    }
+    setTimeout(wishList, 5000)
 }

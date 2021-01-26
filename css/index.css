@@ -114,11 +114,11 @@ button:hover {
     }
 }
 
-#exito {
+#success {
     margin-top: 30px;
 }
 
-#exito strong {
+#success strong {
     display: block;
     margin: 23px;
     font-size: 30px;

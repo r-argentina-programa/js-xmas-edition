@@ -1,17 +1,17 @@
 function testValidateName() {
     console.assert(
-        validateName('') === 'Este campo debe tener al menos 1 caracter',
+        validateName('') === 'El nombre debe tener al menos 1 caracter',
         'Validar nombre no validó que el nombre no sea vacío'
     );
 
     console.assert(
         validateName('111111111111111111111111111111111111111111111111111111111111111') ===
-        'Este campo debe tener menos de 50 caracteres',
+        'El nombre debe tener menos de 50 caracteres',
         'Validar nombre no validó que el nombre sea menor a 50 caracteres'
     );
 
     console.assert(
-        validateName('6454 ') === 'Este campo solo debe contener caracteres',
+        validateName('6454 ') === 'El nombre solo debe contener caracteres',
         'No se valido que solo contenga letras'
     );
 }
@@ -24,13 +24,13 @@ function testValidateCity() {
 
 function testValidateGiftDescription() {
     console.assert(
-        validateGiftDescription('') === 'Este campo debe tener al menos 1 caracter'
+        validateGiftDescription('') === 'La descripcion del regalo debe tener al menos 1 caracter'
     )
     console.assert(
-        validateGiftDescription('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111') === 'Este campo tiene que tener al menos 100 caracteres', 'No se pudo colocar el comportamiento, es vacio'
+        validateGiftDescription('1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111') === 'La descripcion del regalo tiene que tener al menos 100 caracteres', 'No se pudo colocar el comportamiento, es vacio'
     )
     console.assert(
-        validateGiftDescription('&/(%&(') === 'Este campo solo debe contener letras y numeros', 'No se pudo validar que la descripcion del regalo tenga solo letras y numeros'
+        validateGiftDescription('&/(%&(') === 'La descripcion del regalo solo debe contener letras y numeros', 'No se pudo validar que la descripcion del regalo tenga solo letras y numeros'
     )
 }
 

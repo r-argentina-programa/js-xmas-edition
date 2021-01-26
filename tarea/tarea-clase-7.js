@@ -20,14 +20,14 @@ function validateCity(userCity) {
 
 function validateGiftDescription(userGiftDescription) {
     if (userGiftDescription.length === 0) {
-        return 'Este campo debe tener al menos 1 caracter'
+        return 'La descripcion del regalo debe tener al menos 1 caracter'
     }
 
     if (userGiftDescription.length >= 100) {
-        return 'Este campo tiene que tener al menos 100 caracteres'
+        return 'La descripcion del regalo tiene que tener al menos 100 caracteres'
     }
     if (isValidateContainigOnlyLettersAndNumbers(userGiftDescription)) {
-        return 'Este campo solo debe contener letras y numeros'
+        return 'La descripcion del regalo solo debe contener letras y numeros'
     }
     return ''
 }
