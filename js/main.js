@@ -1,7 +1,13 @@
-const $form = document.form
+let localStorageIndex = localStorage.length
+console.log(localStorage.length)
 
-const userName = $form.name.value
 
+
+function getUserName() {
+    return document.form.name.value
+}
+
+const userName = getUserName()
 
 function validateName(userName) {
 
@@ -74,8 +80,10 @@ function handleErrors(errors) {
 
 
     if (countErrors === 0) {
+
         showSuccessMessage()
         redirectToWhishList()
+        saveDataToLocalStorage()
     }
 }
 
@@ -106,8 +114,39 @@ function showSuccessMessage() {
 }
 
 function redirectToWhishList() {
+
     const wishList = () => {
         window.location.href = 'wishlist.html'
     }
+
     setTimeout(wishList, 5000)
+    saveDataToLocalStorage()
 }
+
+
+//---------------------Local Storage-----------------------------------------
+
+function saveDataToLocalStorage() {
+
+    const userName = document.form.name.value
+    const userGiftDescription = document.form['gift-description'].value
+
+    const key = 'user' + localStorageIndex
+
+    console.log(userName, userGiftDescription, key, localStorageIndex)
+
+    localStorage.setItem(key, JSON.stringify({
+
+        userName: userName,
+        giftDescription: userGiftDescription
+    }))
+
+    localStorageIndex++
+
+    console.log(userName, userGiftDescription, key, localStorageIndex)
+
+    const userData = JSON.parse(localStorage.getItem(key))
+
+    console.log(userData)
+}
+saveDataToLocalStorage()

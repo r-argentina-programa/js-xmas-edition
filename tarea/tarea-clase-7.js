@@ -5,9 +5,12 @@
  * Adicional: Escribir pruebas para las funciones de tareas anteriores.
  *
  * */
+function getForm() {
+    return document.form
+}
 
-const userCity = $form.city.value
-const userGiftDescription = $form['gift-description'].value
+const userCity = getForm().city.value
+const userGiftDescription = getForm()['gift-description'].value
 
 
 function validateCity(userCity) {
