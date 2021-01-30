@@ -2,9 +2,8 @@ let localStorageIndex = localStorage.length
 console.log(localStorage.length)
 
 
-
 function getUserName() {
-    return document.form.name.value
+    return document.querySelector('#letter-to-santa').name.value
 }
 
 const userName = getUserName()
@@ -133,7 +132,6 @@ function saveDataToLocalStorage() {
 
     const key = 'user' + localStorageIndex
 
-    console.log(userName, userGiftDescription, key, localStorageIndex)
 
     localStorage.setItem(key, JSON.stringify({
 
@@ -143,10 +141,31 @@ function saveDataToLocalStorage() {
 
     localStorageIndex++
 
-    console.log(userName, userGiftDescription, key, localStorageIndex)
+    return key
 
-    const userData = JSON.parse(localStorage.getItem(key))
-
-    console.log(userData)
 }
-saveDataToLocalStorage()
+
+function showDataTheLocalStorage(userData) {
+
+    return JSON.parse(localStorage.getItem(userData))
+}
+
+function displayWishes() {
+
+    const $wishList = document.querySelector('#wish-list')
+
+    const $wishOfAUser = document.createElement('li')
+
+    const userData = saveDataToLocalStorage()
+
+    $wishOfAUser.appendChild(userData.giftDescription)
+
+    $wishList.appendChild($wishOfAUser)
+
+
+
+
+
+
+
+}
