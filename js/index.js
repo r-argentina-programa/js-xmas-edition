@@ -3,14 +3,13 @@ function validateForm() {
 
     const errors = {
 
-        name: validateName($form.name.value),
-        city: validateCity($form.city.value),
+        'name': validateName($form.name.value),
+        'city': validateCity($form.city.value),
         'gift-description': validateGiftDescription($form['gift-description'].value)
 
     }
 
     handleErrors(errors)
-
 }
 
 document.querySelector('#send-letter').onclick = (event) => {
@@ -22,8 +21,6 @@ document.querySelector('#send-letter').onclick = (event) => {
 }
 
 //---------------------Local-Storage--------------------------
-
-
 
 
 function saveDataToLocalStorage() {
@@ -41,7 +38,6 @@ function saveDataToLocalStorage() {
     }))
 
     localStorageIndex++
-    console.log(key)
-    return key
 
+    return key
 }

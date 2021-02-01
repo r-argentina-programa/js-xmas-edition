@@ -66,27 +66,3 @@ function redirectToWhishList() {
 
 
 //---------------------Local Storage-----------------------------------------
-
-
-
-function displayWishes() {
-
-    const $wishList = document.querySelector('#wish-list')
-
-    const $wishOfAUser = document.createElement('li')
-
-    const userKey = 'key'
-
-    console.log(typeof(userKey))
-
-
-    const userData = JSON.parse(localStorage.getItem(userKey))
-
-    console.log(userData)
-    console.log(typeof(userData))
-
-
-    $wishOfAUser.appendChild(document.createTextNode(userData.giftDescription))
-
-    $wishList.appendChild($wishOfAUser)
-}
