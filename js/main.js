@@ -1,5 +1,4 @@
 let localStorageIndex = localStorage.length
-console.log(localStorage.length)
 
 
 function handleErrors(errors) {
