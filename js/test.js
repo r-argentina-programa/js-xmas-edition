@@ -1,3 +1,34 @@
+function getUserName() {
+    return document.querySelector('#letter-to-santa').name.value
+}
+
+const userName = getUserName()
+
+function validateName(userName) {
+
+
+    if (userName.length === 0) {
+        return 'El nombre debe tener al menos 1 caracter'
+    }
+
+    if (userName.length >= 50) {
+        return 'El nombre debe tener menos de 50 caracteres'
+    }
+
+    if (isValidateContainigOnlyLetters(userName)) {
+        return 'El nombre solo debe contener caracteres'
+    }
+
+    return ''
+}
+
+function isValidateContainigOnlyLetters(text) {
+
+    return (/[0-9 ]/g.test(text))
+}
+
+
+
 function testValidateName() {
     console.assert(
         validateName('') === 'El nombre debe tener al menos 1 caracter',
