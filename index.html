@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-          charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" charset="UTF-8">
     <title>Carta a Papá Noel</title>
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,900" rel="stylesheet">
@@ -12,20 +12,22 @@
 
 <body>
 
-<header>
-    <ul>
-        <li><a href="wishlist.html">Tu lista de deseos</a></li>
-        <li><h1>Carta a santa</h1></li>
-        <li><a href="resultado.html">Tu regalo</a></li>
-    </ul>
-</header>
+    <header>
+        <ul>
+            <li><a href="wishlist.html">Tu lista de deseos</a></li>
+            <li>
+                <h1>Carta a santa</h1>
+            </li>
+            <li><a href="result.html">Tu regalo</a></li>
+        </ul>
+    </header>
 
-<section>
-    <img src="img/gift_top.svg" class="gift_top" alt="Imagen de un regalo">
-    <form method="post" name="formulario" id="carta-a-santa">
-        <p>Querido Santa,</p>
-        <p>Mi nombre es<input type="text" name="nombre" id="nombre" value="Fabricio"> y vivo en
-            <select name="ciudad">
+    <section>
+        <img src="img/gift_top.svg" class="gift_top" alt="Imagen de un regalo">
+        <form method="post" name="form" id="letter-to-santa">
+            <p>Querido Santa,</p>
+            <p>Mi nombre es<input type="text" name="name" id="name"> y vivo en
+                <select name="city">
 				<option value="">Selecciona...</option>
                 <option value="Buenos Aires">Bs. As.</option>
                 <option value="Catamarca">Catamarca</option>
@@ -51,62 +53,66 @@
                 <option value="Tierra del Fuego">Tierra del Fuego</option>
                 <option value="Tucuman">Tucuman</option>
             </select>.
-        </p>
+            </p>
 
-        <p> Creo que este año he sido
-            <input type="radio" value="muy_bueno" name="comportamiento"> Muy bueno
-            <input type="radio" value="bueno" name="comportamiento"> Bueno
-            <input type="radio" value="maso" name="comportamiento" checked> Mas o menos.</p>
-        <p>Este año realmente me gustaría recibir</p>
-        <p>
-            <textarea name="descripcion-regalo" rows="4" cols="45"></textarea>
-        </p>
+            <p> Creo que este año he sido
+                <input type="radio" value="very_good" name="behavior"> Muy bueno
+                <input type="radio" value="good" name="behavior"> Bueno
+                <input type="radio" value="more-or-less" name="behavior" checked> Mas o menos.</p>
+            <p>Este año realmente me gustaría recibir</p>
+            <p>
+                <textarea name="gift-description" rows="4" cols="45"></textarea>
+            </p>
 
-        <ul id="errores">
+            <ul id="errors">
+            </ul>
+
+            <p>
+                <button name="submit" id="send-letter">
+                    Enviar carta
+                </button>
+            </p>
+        </form>
+
+        <div id="success" class="hidden">
+            <strong>Tu envío fue exitoso!</strong>
+        </div>
+
+        <img src="img/gift_box.svg" class="gift_bottom">
+    </section>
+
+    <footer>
+        <ul>
+            <li class="twitter">
+                Twitter:
+                <a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer">@NodeGirlsSydney</a>
+                <a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer">@NodeGirlsMelb</a>
+                <a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer">@NodeGirlsBri</a>
+                <a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer">@NodeGirlsPerth</a>
+            </li>
+            <li class="facebook">
+                Facebook:
+                <a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer">NodeGirlsAustralia</a>
+            </li>
         </ul>
+        <ul>
+            <li class="website">
+                Website:
+                <a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
+            </li>
+            <li class="email">
+                e-mail:
+                <a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer">info@nodegirls.com.au</a>
+            </li>
+        </ul>
+    </footer>
 
-        <p>
-            <button name="submit" id="enviar-carta">
-                Enviar carta
-            </button>
-        </p>
-    </form>
 
-    <div id="exito" class="oculto">
-        <strong>Tu envío fue exitoso!</strong>
-    </div>
+    <script src="js/index.js"></script>
+    <script src="js/main.js"></script>
+    <script src="tarea/tarea-clase-7.js"></script>
+    <script src="js/test.js"></script>
 
-    <img src="img/gift_box.svg" class="gift_bottom">
-</section>
-
-<footer>
-    <ul>
-        <li class="twitter">
-            Twitter:
-            <a href="https://twitter.com/NodeGirlsSydney" target="_blank" rel="noopener noreferrer">@NodeGirlsSydney</a>
-            <a href="https://twitter.com/NodeGirlsMelb" target="_blank" rel="noopener noreferrer">@NodeGirlsMelb</a>
-            <a href="https://twitter.com/NodeGirlsBri" target="_blank" rel="noopener noreferrer">@NodeGirlsBri</a>
-            <a href="https://twitter.com/NodeGirlsPerth" target="_blank" rel="noopener noreferrer">@NodeGirlsPerth</a>
-        </li>
-        <li class="facebook">
-            Facebook:
-            <a href="https://www.facebook.com/NodeGirlsAustralia" target="_blank" rel="noopener noreferrer">NodeGirlsAustralia</a>
-        </li>
-    </ul>
-    <ul>
-        <li class="website">
-            Website:
-            <a href="http://nodegirls.com.au" target="_blank" rel="noopener noreferrer">nodegirls.com.au</a>
-        </li>
-        <li class="email">
-            e-mail:
-            <a href="mailto:info@nodegirls.com.au" target="_blank" rel="noopener noreferrer">info@nodegirls.com.au</a>
-        </li>
-    </ul>
-</footer>
-
-<script src="js/main-mio.js"></script>
-<script src="js/pruebas.js"></script>
 </body>
 
 </html>
